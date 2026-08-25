@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browserslist": [
+    "> 0.3%",
+    "not dead",
+    "not op_mini all",
+    "not ie 11"
+  ],
   "dependencies": {
     "@neondatabase/serverless": "^0.10.1",
     "@tiptap/core": "^2.6.6",

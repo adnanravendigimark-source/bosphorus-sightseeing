@@ -159,6 +159,15 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${displayFont.variable} ${scriptFont.variable}`}>
       <head>
+        {/* Warms up the connection to Google's analytics domains ahead of
+            the afterInteractive gtag.js load below, shaving the DNS/TLS
+            handshake off its actual request instead of paying for it when
+            the script fires (PageSpeed: shortens the "Network dependency
+            tree" / request-chain latency). */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         {/* Google tag (gtag.js) — replace G-XXXXXXXXXX with this site's own
             GA4 measurement ID before launch (Admin → Analytics, or a
             property you create at analytics.google.com). Do not reuse

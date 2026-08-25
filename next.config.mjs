@@ -19,6 +19,11 @@ const nextConfig = {
       dynamic: 0,
       static: 0,
     },
+    // Inlines critical above-the-fold CSS and loads the rest async, so the
+    // main stylesheet stops render-blocking the first paint (PageSpeed:
+    // "Render-blocking requests" fix). Requires the `critters` package,
+    // already in devDependencies — no npm install needed.
+    optimizeCss: true,
   },
   images: {
     // Editors can paste an image URL from anywhere (stock photo sites,
@@ -30,6 +35,10 @@ const nextConfig = {
     // allowing any HTTPS host here is an acceptable trade-off for a CMS
     // like this rather than maintaining a domain list by hand.
     remotePatterns: [{ protocol: "https", hostname: "**" }],
+    // Next 14's default is webp-only — adding avif lets next/image serve
+    // the smaller AVIF encoding to browsers that support it, falling back
+    // to webp/original otherwise (PageSpeed: "Improve image delivery" fix).
+    formats: ["image/avif", "image/webp"],
   },
 };
 
