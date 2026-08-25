@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Admin toast notifications (components/admin/Toast.tsx) — slide/fade in
+   from the right, used by the `animate-[toast-in_0.2s_ease-out]` utility. */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+body {
+  color: #252a2d;
+}
+
+/* Default brand-color CSS variables — space-separated RGB triplets (not
+   hex) so Tailwind's `rgb(var(--x) / <alpha-value>)` colors in
+   tailwind.config.ts can still apply opacity modifiers like `/40`.
+   app/layout.tsx overrides these with the admin's saved colors (if any)
+   via an inline <style> tag rendered after this stylesheet — these values
+   are what the live site already looked like before that panel existed,
+   so an untouched site renders pixel-identical to before. */
+:root {
+  --color-bosphorus-navy: 8 43 76; /* #082B4C - Bosphorus Navy */
+  --color-bosphorus-gold: 217 164 65; /* #D9A441 - Bosphorus Gold */
+  --color-bosphorus-charcoal: 37 42 45; /* #252A2D - Charcoal */
+  --color-gold-400: 224 182 105; /* #E0B669 - Luminous Bosphorus Gold */
+}
+
+/* Shared typography for admin-entered rich text (RichTextEditor.tsx),
+   rendered on the public site via dangerouslySetInnerHTML wherever a
+   field is rich-text (hero subheading, section intros, footer tagline,
+   etc.) — kept as plain CSS instead of the Tailwind Typography plugin
+   since that isn't installed, and this only needs to match a handful of
+   existing text styles already used across the homepage. */
+.rich-content h1,
+.rich-content h2,
+.rich-content h3 {
+  font-family: var(--font-display), Georgia, ui-serif, serif;
+  font-weight: 600;
+  color: #252a2d;
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+  /* Offsets anchor-jump landing position (from the "In This Guide" table of
+     contents, or a shared #heading link) so the heading doesn't end up
+     tucked underneath the sticky site header. */
+  scroll-margin-top: 6rem;
+}
+.rich-content h1 {
+  font-size: 1.75em;
+}
+.rich-content h2 {
+  font-size: 1.5em;
+}
+.rich-content h3 {
+  font-size: 1.2em;
+}
+.rich-content p {
+  margin: 0.6em 0;
+}
+.rich-content ul,
+.rich-content ol {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+}
+.rich-content ul {
+  list-style: disc;
+}
+.rich-content ol {
+  list-style: decimal;
+}
+.rich-content a {
+  color: rgb(var(--color-bosphorus-navy));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.rich-content a.text-white,
+.rich-content a[class*="text-white"],
+.rich-content a[class*="bg-"] {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+.rich-content strong {
+  font-weight: 700;
+}
+.rich-content img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 0.75em 0;
+}
+.rich-content figure {
+  margin: 0.75em 0;
+}
+.rich-content figure img {
+  margin: 0;
+}
+.rich-content figcaption {
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  color: rgba(36, 31, 26, 0.6);
+  text-align: center;
+}
+.rich-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+  font-size: 0.95em;
+}
+.rich-content table td,
+.rich-content table th {
+  border: 1px solid rgba(36, 31, 26, 0.15);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+.rich-content table th {
+  background: rgba(36, 31, 26, 0.04);
+  font-weight: 600;
+}
+
+/* Used wherever rich-content is rendered on a dark background (e.g. the
+   Hero subheading, over the ink hero photo) — the base .rich-content
+   rules above hardcode a dark heading/link color for use on light
+   backgrounds, which would make an H1/H2/H3 or link invisible on a dark
+   one. This makes headings/links/bold text inherit the surrounding
+   (light) text color instead. */
+.rich-content-invert,
+.rich-content-invert h1,
+.rich-content-invert h2,
+.rich-content-invert h3,
+.rich-content-invert a,
+.rich-content-invert strong,
+.rich-content-invert figcaption {
+  color: inherit;
+}
+
+/* Tiptap's Placeholder extension (used by TiptapArticleEditor.tsx, the
+   blog post "Article Content" field) marks the empty first paragraph with
+   a data-placeholder attribute + this class — Tiptap doesn't ship any CSS
+   itself, so the placeholder text is invisible without this. */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: rgba(120, 113, 108, 0.6);
+  pointer-events: none;
+}
+
+/* Placeholder text for the empty contentEditable in RichTextEditor.tsx. */
+[data-rte-empty="true"]:before {
+  content: attr(data-placeholder);
+  color: rgba(36, 31, 26, 0.35);
+  pointer-events: none;
+}
