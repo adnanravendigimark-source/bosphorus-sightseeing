@@ -341,32 +341,32 @@ export const DEFAULT_FOOTER: FooterContent = {
 };
 
 export const DEFAULT_THEME: ThemeColors = {
-  primary: "#E5A93C",   // Warm Radiant Gold
-  secondary: "#0B1E2F", // Maritime Navy
-  dark: "#081827",      // Deep Sea Charcoal
-  accent: "#F3BA4F",    // Luminous Amber Gold
+  primary: "#D9A441",   // Bosphorus Gold
+  secondary: "#082B4C", // Bosphorus Navy
+  dark: "#082B4C",      // Bosphorus Navy
+  accent: "#E5BA5A",    // Soft Gold
 };
 
 export const DEFAULT_GALLERY: GalleryImage[] = [
   {
-    src: "https://images.unsplash.com/photo-1759347171702-e9cae049bc01?q=80&w=900&auto=format&fit=crop",
-    alt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
-    label: "The Cruise",
+    src: "/tour-short-circle.jpg",
+    alt: "Ortakoy Mosque and Bosphorus Bridge during daytime sightseeing cruise in Istanbul",
+    label: "Ortaköy & Bridge",
   },
   {
-    src: "https://images.unsplash.com/photo-1566051102155-bf0e5ad5a345?q=80&w=900&auto=format&fit=crop",
-    alt: "Dolmabahce Palace on the Bosphorus shoreline in Istanbul",
+    src: "/palace-dolmabahce.jpg",
+    alt: "Dolmabahce Palace waterfront facade and clock tower on the Bosphorus strait",
     label: "Dolmabahçe Palace",
   },
   {
-    src: "https://images.unsplash.com/photo-1669936066960-6b2d8fb5d4b9?q=80&w=900&auto=format&fit=crop",
-    alt: "A waterfront tower on the Bosphorus strait in Istanbul during the day",
-    label: "Along the Strait",
+    src: "/palace-maidens-tower.jpg",
+    alt: "Maiden's Tower in the Bosphorus with Istanbul historical skyline",
+    label: "Maiden's Tower",
   },
   {
-    src: "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=900&auto=format&fit=crop",
-    alt: "Istanbul skyline with mosques along the Bosphorus strait in daylight",
-    label: "Istanbul Skyline",
+    src: "/palace-rumeli.jpg",
+    alt: "Rumeli Fortress along the Bosphorus shoreline in bright daylight",
+    label: "Rumeli Fortress",
   },
 ];
 
@@ -419,14 +419,14 @@ export const DEFAULT_SECTIONS: HomepageSections = {
       { time: "1:10", step: "Rumeli Fortress, near the Fatih Sultan Mehmet Bridge — the turnaround point" },
       { time: "1:40", step: "Return past Beşiktaş and Kabataş, back to Eminönü" },
     ],
-    learnHeading: "What you'll notice",
+    learnHeading: "Good to know before boarding",
     learn: [
-      "Why the Bosphorus is one of the busiest shipping straits in the world",
-      "How wooden yalı mansions have lined the shore since the Ottoman era",
-      "Which side of the boat has the best photo angle for Ortaköy Mosque and the bridge",
-      "Why the Short Circle Cruise only runs April through October",
+      "Boarding opens 20–30 minutes before departure; top-deck seating is first-come, first-served",
+      "Audio guides are multilingual and accessible via your smartphone or onboard headsets",
+      "Cruises run rain or shine — the lower deck is fully enclosed and heated in cooler months",
+      "Every cruise on this site departs in morning or afternoon daylight",
     ],
-    note: "Cruises run with multilingual audio commentary, so you always know what you're looking at as it passes. Boats have covered indoor seating, so light rain rarely cancels a departure.",
+    note: "Route order may vary slightly depending on weather and harbor traffic, but all listed landmarks are covered.",
     extraHeading: "Where you can board",
     extraItems: [
       { name: "Eminönü Pier", note: "The main departure point for most sightseeing cruises, in the historic peninsula" },
@@ -452,24 +452,24 @@ export const DEFAULT_SECTIONS: HomepageSections = {
     ctaHref: "#tours",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1624187043891-33189b8390e1?q=80&w=700&auto=format&fit=crop",
+        src: "/palace-dolmabahce.jpg",
         alt: "Dolmabahce Palace on the Bosphorus shoreline in Istanbul during the day",
         label: "Dolmabahçe Palace",
       },
       {
-        src: "https://images.unsplash.com/photo-1669936066960-6b2d8fb5d4b9?q=80&w=700&auto=format&fit=crop",
-        alt: "A waterfront tower on the Bosphorus strait in Istanbul during the day",
-        label: "Along the Strait",
+        src: "/palace-maidens-tower.jpg",
+        alt: "Maiden's Tower in the Bosphorus strait in Istanbul during daytime",
+        label: "Maiden's Tower",
       },
       {
-        src: "https://images.unsplash.com/photo-1759347171702-e9cae049bc01?q=80&w=700&auto=format&fit=crop",
-        alt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
+        src: "/tour-short-circle.jpg",
+        alt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during daytime sightseeing cruise",
         label: "Ortaköy Mosque",
       },
       {
-        src: "https://images.unsplash.com/photo-1566051102155-bf0e5ad5a345?q=80&w=700&auto=format&fit=crop",
-        alt: "Dolmabahce Palace along the Bosphorus in Istanbul in daylight",
-        label: "The Waterfront",
+        src: "/palace-yali.jpg",
+        alt: "Historic Ottoman wooden waterfront mansions along the Bosphorus",
+        label: "Yalı Mansions",
       },
     ],
   },

@@ -16,32 +16,27 @@ const config: Config = {
           900: "#252A2D",
         },
         gold: {
-          // Bosphorus Gold tints/shades — highlights, active links, prices
-          400: "rgb(var(--color-gold-400) / <alpha-value>)",
-          500: "#E5A93C",
-          600: "#D99B26",
+          // Bosphorus Gold highlights, active links, prices
+          400: "#E5BA5A",
+          500: "#D9A441",
+          600: "#C48E2B",
         },
         // Deep Ottoman Blue — secondary sections
         ottoman: {
-          900: "#0B1E2F",
+          900: "#123F63",
         },
         bosphorus: {
-          // Main brand, header, CTA, footer (admin-overridable via CSS vars)
           navy: "rgb(var(--color-bosphorus-navy) / <alpha-value>)",
-          // Highlights, active links, prices (admin-overridable via CSS vars)
+          ottoman: "#123F63",
           gold: "rgb(var(--color-bosphorus-gold) / <alpha-value>)",
-          // Body text (admin-overridable via CSS vars)
           charcoal: "rgb(var(--color-bosphorus-charcoal) / <alpha-value>)",
-          // Warm Ivory — main background
           ivory: "#F7F4EC",
-          // Soft Sky — light sections/cards
           sky: "#E5EEF3",
-          // Warm Sand — borders and subtle backgrounds
           sand: "#DDD2BF",
         },
         navy: {
-          // Bosphorus Navy — main brand, header, CTA, footer
-          900: "#081827",
+          900: "#082B4C",
+          800: "#123F63",
         },
       },
       fontFamily: {

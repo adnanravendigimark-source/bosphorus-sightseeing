@@ -4,18 +4,18 @@ import Image from "next/image";
 // Inline vector mark of a modern luxury yacht / cruise boat with wake and sail lines.
 function YachtMarkSvg({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 50" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      {/* Triangular Mast / Rigging */}
-      <path d="M32 4L16 26H48L32 4Z" stroke="#FFFFFF" strokeWidth="2" strokeLinejoin="round" fill="#FFFFFF" fillOpacity="0.1" />
-      <line x1="32" y1="4" x2="32" y2="26" stroke="#FFFFFF" strokeWidth="1.8" />
-      <line x1="23" y1="16" x2="41" y2="16" stroke="#FFFFFF" strokeWidth="1.2" />
-      {/* Yacht Hull */}
-      <path d="M6 33L14 26H50L58 33L54 38H10L6 33Z" stroke="#FFFFFF" strokeWidth="2" strokeLinejoin="round" fill="#FFFFFF" fillOpacity="0.15" />
-      {/* Hull Accent Stripe */}
-      <line x1="18" y1="32" x2="46" y2="32" stroke="#E5A83B" strokeWidth="1.6" strokeLinecap="round" />
-      {/* Water / Wake lines */}
-      <path d="M2 42C12 44.5 24 44.5 36 42C44 40.5 54 41.5 62 43.5" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-      <path d="M10 47C18 48.5 28 48.5 38 47C44 46 50 46.5 54 47.5" stroke="#E5A83B" strokeWidth="1.6" strokeLinecap="round" />
+    <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      {/* Triangular Mast & Rigging */}
+      <path d="M48 6L28 38H68L48 6Z" stroke="#FFFFFF" strokeWidth="2.8" strokeLinejoin="round" fill="#FFFFFF" fillOpacity="0.08" />
+      <line x1="48" y1="6" x2="48" y2="38" stroke="#FFFFFF" strokeWidth="2.8" />
+      <line x1="34" y1="24" x2="62" y2="24" stroke="#FFFFFF" strokeWidth="2.2" />
+      {/* Bridge / Upper Cabin */}
+      <path d="M26 42L46 36L72 38L62 44L26 44Z" stroke="#FFFFFF" strokeWidth="2.5" fill="#FFFFFF" fillOpacity="0.15" />
+      {/* Lower Hull */}
+      <path d="M20 54L34 45H70L90 41L78 54L30 55L20 54Z" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="2.5" strokeLinejoin="round" />
+      {/* Double Wave Lines */}
+      <path d="M12 62C18 65 26 65 32 62C38 59 46 59 52 62C58 65 66 65 72 62C78 59 84 60 90 62" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
+      <path d="M12 69C18 72 26 72 32 69C38 66 46 66 52 69C58 72 66 72 72 69C78 66 84 67 90 69" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
     </svg>
   );
 }
@@ -58,7 +58,7 @@ export default function Logo({
           >
             {line1 || "BOSPHORUS"}
           </span>
-          <span className="block font-sans text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#E5A83B]">
+          <span className="block font-sans text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#D9A441]">
             {line2 || "BOAT CRUISE —"}
           </span>
         </div>
@@ -67,9 +67,9 @@ export default function Logo({
   }
 
   const image = (
-    <span className="relative block h-10 w-12 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105">
+    <span className="relative block h-11 w-14 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105">
       {customSrc ? (
-        <Image src={customSrc} alt={alt} fill priority sizes="48px" className="object-contain" />
+        <Image src={customSrc} alt={alt} fill priority sizes="56px" className="object-contain" />
       ) : (
         <YachtMarkSvg className="h-full w-full" />
       )}
@@ -79,20 +79,20 @@ export default function Logo({
   const wordmark = (
     <div className="flex min-w-0 flex-col justify-center">
       <span
-        className={`block truncate font-display text-xl sm:text-[1.35rem] font-bold tracking-[0.08em] leading-none ${
+        className={`block truncate font-display text-xl sm:text-[1.4rem] font-bold tracking-[0.08em] leading-none ${
           isDark ? "text-white" : "text-stone-900"
         }`}
       >
         {line1 || "BOSPHORUS"}
       </span>
-      <span className="block truncate font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] text-[#E5A83B] leading-none mt-1">
+      <span className="block truncate font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] text-[#D9A441] leading-none mt-1">
         {line2 || "BOAT CRUISE —"}
       </span>
     </div>
   );
 
   return (
-    <Link href="/" className={`group inline-flex min-w-0 items-center gap-3 ${className}`}>
+    <Link href="/" className={`group inline-flex min-w-0 items-center gap-2.5 ${className}`}>
       {image}
       {wordmark}
     </Link>
