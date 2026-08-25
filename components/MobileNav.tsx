@@ -4,16 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { NavLink } from "@/lib/homepage";
 
-// Hamburger + slide-down panel for the public header's nav links on small
-// screens. Header.tsx's <nav> is `hidden md:flex` with no mobile fallback,
-// so below the md breakpoint visitors had no way to reach Tours/Blog/
-// About/Contact at all — this is what actually lets them switch pages
-// on mobile.
-//
-// Positioned `absolute top-full` rather than a hardcoded `fixed top-16`
-// so it sits right below the header regardless of the header's actual
-// height — the sticky <header> itself is the nearest positioned
-// ancestor, so this anchors correctly either way.
 export default function MobileNav({
   navLinks,
   ctaText,
@@ -47,7 +37,7 @@ export default function MobileNav({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label={open ? "Close menu" : "Open menu"}
-        className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-stone-700 transition hover:bg-stone-100"
+        className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-white/90 transition hover:bg-white/10"
       >
         <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" stroke="currentColor" strokeWidth={1.8}>
           {open ? (
@@ -61,28 +51,28 @@ export default function MobileNav({
       {open && (
         <>
           <div
-            className="absolute inset-x-0 top-full z-40 h-screen bg-stone-900/40 backdrop-blur-[1px]"
+            className="absolute inset-x-0 top-full z-40 h-screen bg-[#081827]/70 backdrop-blur-sm"
             aria-hidden="true"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute inset-x-0 top-full z-40 max-h-[80vh] overflow-y-auto border-b border-stone-200 bg-white shadow-lg">
+          <div className="absolute inset-x-0 top-full z-40 max-h-[80vh] overflow-y-auto border-b border-white/10 bg-[#081827] shadow-2xl">
             <nav className="flex flex-col px-4 py-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.href + link.label}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-stone-100 py-3.5 text-base font-semibold text-stone-800 transition hover:text-emerald-700 last:border-b-0"
+                  className="border-b border-white/5 py-3.5 text-base font-semibold text-white/90 transition hover:text-[#E5A93C] last:border-b-0"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
-            <div className="px-4 pb-5 pt-1">
+            <div className="px-4 pb-5 pt-2">
               <Link
                 href={ctaHref}
                 onClick={() => setOpen(false)}
-                className="block rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-5 py-3 text-center text-sm font-bold text-white shadow-md shadow-amber-500/20"
+                className="block rounded-lg bg-[#E5A93C] py-3 text-center text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition hover:bg-[#D99B26]"
               >
                 {ctaText}
               </Link>

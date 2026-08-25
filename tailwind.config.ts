@@ -18,12 +18,12 @@ const config: Config = {
         gold: {
           // Bosphorus Gold tints/shades — highlights, active links, prices
           400: "rgb(var(--color-gold-400) / <alpha-value>)",
-          500: "#D9A441",
-          600: "#BD8A2E",
+          500: "#E5A93C",
+          600: "#D99B26",
         },
         // Deep Ottoman Blue — secondary sections
         ottoman: {
-          900: "#123F63",
+          900: "#0B1E2F",
         },
         bosphorus: {
           // Main brand, header, CTA, footer (admin-overridable via CSS vars)
@@ -41,11 +41,12 @@ const config: Config = {
         },
         navy: {
           // Bosphorus Navy — main brand, header, CTA, footer
-          900: "#082B4C",
+          900: "#081827",
         },
       },
       fontFamily: {
         display: ["var(--font-display)", "Cormorant Garamond", "Georgia", "ui-serif", "serif"],
+        script: ["var(--font-script)", "Alex Brush", "cursive"],
         body: ["system-ui", "-apple-system", "sans-serif"],
       },
       backgroundImage: {

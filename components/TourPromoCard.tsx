@@ -29,7 +29,7 @@ export default function TourPromoCard({
         href={tour.href}
         target="_blank"
         rel="noopener nofollow sponsored"
-        className="shrink-0 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-5 py-2.5 text-center text-sm font-bold text-white shadow-md shadow-amber-500/20 transition-all duration-300 hover:scale-[1.03] hover:shadow-amber-500/30"
+        className="shrink-0 rounded-lg bg-[#E5A93C] px-5 py-2.5 text-center text-xs sm:text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
       >
         {bookNowText}
       </a>

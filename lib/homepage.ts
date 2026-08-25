@@ -282,17 +282,20 @@ export interface HomepageContent {
 export const DEFAULT_HEADER: HeaderContent = {
   logoImage: "",
   logoAlt: "Bosphorus Boat Cruise Tickets",
-  logoLine1: "Bosphorus",
-  logoLine2: "Boat Cruise",
+  logoLine1: "BOSPHORUS",
+  logoLine2: "BOAT CRUISE —",
   homeLabel: "Home",
-  bookNowText: "Book Now",
+  bookNowText: "Book Tickets",
   navLinks: [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
+    { label: "Day Cruises", href: "/#tours" },
+    { label: "Afternoon Cruises", href: "/#tours" },
+    { label: "Private Cruises", href: "/#tours" },
+    { label: "About Bosphorus", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
-  ctaText: "Book a Cruise",
+  ctaText: "BOOK TICKETS",
   ctaHref: "/#tours",
 };
 
@@ -327,10 +330,10 @@ export const DEFAULT_FOOTER: FooterContent = {
 };
 
 export const DEFAULT_THEME: ThemeColors = {
-  primary: "#D9A441",   // Bosphorus Gold
-  secondary: "#082B4C", // Bosphorus Navy
-  dark: "#252A2D",      // Charcoal
-  accent: "#E0B669",    // Luminous Bosphorus Gold
+  primary: "#E5A93C",   // Warm Radiant Gold
+  secondary: "#0B1E2F", // Maritime Navy
+  dark: "#081827",      // Deep Sea Charcoal
+  accent: "#F3BA4F",    // Luminous Amber Gold
 };
 
 export const DEFAULT_GALLERY: GalleryImage[] = [
@@ -528,20 +531,20 @@ export const DEFAULT_SECTIONS: HomepageSections = {
 // `node scripts/setup-db.mjs` has been run) — a real image rather than an
 // empty string so the hero section never renders broken/blank.
 const DEFAULT_HOMEPAGE_CONTENT: HomepageContent = {
-  heroBadge: "⚓ Skip the line · Instant confirmation",
-  heroHeading: "Bosphorus Sightseeing Cruise Tour Tickets — See Istanbul From the Water",
+  heroBadge: "BOSPHORUS SIGHTSEEING CRUISE TOUR",
+  heroHeading: "Bosphorus Sightseeing Cruise Tour",
   heroSubheading:
-    "Glide past Dolmabahçe Palace, Ortaköy Mosque, and the Bosphorus Bridge on a day or afternoon sightseeing cruise. Book online — instant confirmation, free cancellation on most tickets. No night or dinner cruises here.",
+    "Sail between Europe and Asia and discover Istanbul's most stunning views, historic landmarks and unforgettable moments.",
   heroImage:
     "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=2400&auto=format&fit=crop",
-  heroImageAlt: "Istanbul skyline with mosques along the Bosphorus strait in daylight",
+  heroImageAlt: "Sightseeing cruise boat on the Bosphorus strait in front of Ortakoy Mosque and bridge",
   heroGallery: DEFAULT_GALLERY,
-  heroCtaPrimaryText: "Compare Bosphorus Cruises",
+  heroCtaPrimaryText: "Day Cruise Tickets",
   heroCtaPrimaryHref: "#tours",
-  heroCtaSecondaryText: "See Cruise Prices",
-  heroCtaSecondaryHref: "#prices",
-  ratingValue: "4.4 / 5",
-  ratingCount: "30,000+ reviews",
+  heroCtaSecondaryText: "Afternoon Cruise Tickets",
+  heroCtaSecondaryHref: "#tours",
+  ratingValue: "4.7 / 5",
+  ratingCount: "3,250+ reviews",
   showFeaturedTour: true,
   featuredTourId: "bosphorus-short-circle-sightseeing-cruise",
   featuredBadgeLabel: "Recommended",

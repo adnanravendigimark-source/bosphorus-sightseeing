@@ -1,89 +1,183 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import SafeImage from "./SafeImage";
-import StarRating from "./StarRating";
-import { getTours } from "@/lib/data";
-import { getRelatedPosts } from "@/lib/posts";
-import { getHomepageContent } from "@/lib/homepage";
+import TableOfContents from "./TableOfContents";
+import { CalendarIcon, SearchIcon, TicketIcon } from "./icons";
+import type { Post } from "@/lib/posts";
+import type { TocItem } from "@/lib/tableOfContents";
 
-export default async function BlogSidebar({
-  slug,
-  recommendedTourId,
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+export default function BlogSidebar({
+  popularPosts,
+  toc,
+  tocLabel = "In This Guide",
+  relatedHeading = "Popular Guides",
+  compareLinkText = "Compare Bosphorus Cruises →",
+  recommendedBadge,
 }: {
   slug: string;
-  recommendedTourId: string;
+  popularPosts: Post[];
+  toc: TocItem[];
+  tocLabel?: string;
+  relatedHeading?: string;
+  compareLinkText?: string;
+  recommendedBadge?: string;
 }) {
-  const [tours, related, { header, sections }] = await Promise.all([
-    getTours(),
-    getRelatedPosts(slug),
-    getHomepageContent(),
-  ]);
-  const tour = tours.find((t) => t.id === recommendedTourId);
-  const s = sections.blogPage;
+  const [email, setEmail] = useState("");
+  const [agreed, setAgreed] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (search.trim()) {
+      window.location.href = `/blog?q=${encodeURIComponent(search.trim())}`;
+    }
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+    }
+  };
+
+  const popular = popularPosts.slice(0, 4);
 
   return (
-    <aside className="space-y-8 lg:sticky lg:top-24 lg:self-start">
-      {tour && (
-        <div className="overflow-hidden rounded-2xl border border-stone-900/10 bg-white shadow-sm">
-          <div className="relative aspect-[4/3]">
-            <SafeImage src={tour.image} alt={tour.imageAlt} fill sizes="320px" className="object-cover" />
-            <span className="absolute left-3 top-3 rounded-full bg-gold-500 px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm">
-              {s.sidebarRecommendedBadge}
-            </span>
-          </div>
-          <div className="p-5">
-            <p className="font-display text-sm font-semibold leading-snug text-stone-900">
-              {tour.title}
-            </p>
-            <div className="mt-1.5 flex items-center gap-1.5 text-xs text-stone-900/60">
-              <StarRating rating={tour.rating} showValue reviewCount={tour.reviews} size="xs" />
-            </div>
-            <div className="mt-4 flex items-center justify-between border-t border-stone-900/10 pt-4">
-              <div>
-                <p className="text-[10px] uppercase tracking-wide text-stone-900/40">from</p>
-                <p className="font-display text-lg font-bold text-stone-900">€{tour.price}</p>
-              </div>
-              <a
-                href={tour.href}
-                target="_blank"
-                rel="noopener nofollow sponsored"
-                className="rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-amber-500/20 transition hover:scale-[1.02]"
+    <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+      {/* Search Bar */}
+      <form onSubmit={handleSearch} className="flex rounded-xl border border-bosphorus-sand/60 bg-white overflow-hidden shadow-sm focus-within:border-bosphorus-navy">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search guides..."
+          className="w-full bg-transparent px-3.5 py-2.5 text-xs text-bosphorus-charcoal placeholder-bosphorus-charcoal/60 focus:outline-none"
+        />
+        <button
+          type="submit"
+          aria-label="Search"
+          className="flex items-center justify-center bg-bosphorus-navy px-3.5 text-white transition hover:opacity-90"
+        >
+          <SearchIcon className="h-4 w-4" />
+        </button>
+      </form>
+
+      {/* Table of Contents */}
+      <TableOfContents items={toc} label={tocLabel} />
+
+      {/* Popular Articles */}
+      {popular.length > 0 && (
+        <div className="rounded-2xl border border-bosphorus-sand/60 bg-white p-5 shadow-sm">
+          <p className="font-display text-xs font-bold uppercase tracking-wider text-bosphorus-navy">
+            {relatedHeading}
+          </p>
+          <div className="mt-4 space-y-3.5">
+            {popular.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex items-center gap-3"
               >
-                {header.bookNowText}
-              </a>
-            </div>
+                <div className="relative h-13 w-16 shrink-0 aspect-[4/3] overflow-hidden rounded-xl bg-bosphorus-navy">
+                  <SafeImage
+                    src={post.image}
+                    alt={post.imageAlt || post.title}
+                    fill
+                    quality={65}
+                    sizes="80px"
+                    className="object-cover transition duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="line-clamp-2 text-xs font-bold leading-snug text-bosphorus-navy transition-colors group-hover:text-bosphorus-gold">
+                    {post.title}
+                  </p>
+                  <p className="mt-1 flex items-center gap-1 text-[11px] text-bosphorus-charcoal/70 font-medium">
+                    <CalendarIcon className="h-3 w-3 text-bosphorus-gold" />
+                    {formatDate(post.date)}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       )}
 
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-stone-900/40">
-          {s.sidebarRelatedHeading}
-        </p>
-        <div className="mt-4 space-y-4">
-          {related.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex gap-3">
-              <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-lg">
-                <SafeImage src={post.image} alt={post.imageAlt} fill sizes="80px" className="object-cover" />
-              </div>
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-wide text-bosphorus-navy">
-                  {post.category}
-                </p>
-                <p className="mt-0.5 line-clamp-2 text-sm font-medium text-stone-900 group-hover:text-bosphorus-gold">
-                  {post.title}
-                </p>
-              </div>
-            </Link>
-          ))}
+      {/* Compare Tickets Promo Card */}
+      <div className="relative overflow-hidden rounded-2xl bg-bosphorus-navy p-6 text-center text-white shadow-md border border-bosphorus-navy">
+        {recommendedBadge && (
+          <span className="mb-2 inline-flex items-center gap-1 rounded-full bg-bosphorus-gold/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-bosphorus-gold">
+            {recommendedBadge}
+          </span>
+        )}
+        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-bosphorus-gold border border-white/15 shadow-sm">
+          <TicketIcon className="h-5 w-5" />
         </div>
+        <p className="mt-3.5 font-display text-base font-bold text-white">
+          Compare Bosphorus Cruises &amp; Tickets
+        </p>
+        <p className="mt-1.5 text-xs leading-relaxed text-white/80">
+          Find the best cruise options, departure times and prices in one place.
+        </p>
+        <a
+          href="/#tours"
+          className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-bosphorus-gold px-5 py-2.5 text-xs font-bold text-white shadow-sm transition hover:opacity-90 hover:scale-[1.02]"
+        >
+          {compareLinkText}
+        </a>
       </div>
 
-      <a
-        href="/#tours"
-        className="block rounded-2xl bg-bosphorus-navy/5 p-5 text-center text-sm font-semibold text-stone-900 transition hover:bg-bosphorus-navy/10"
-      >
-        {s.sidebarCompareLinkText}
-      </a>
+      {/* Newsletter Card */}
+      <div className="rounded-2xl border border-bosphorus-sand/60 bg-white p-5 shadow-sm">
+        <p className="font-display text-xs font-bold uppercase tracking-wider text-bosphorus-navy">
+          Newsletter
+        </p>
+        <p className="mt-2 text-xs text-bosphorus-charcoal/80 leading-relaxed">
+          Get travel tips, guides and exclusive deals straight to your inbox.
+        </p>
+        {subscribed ? (
+          <p className="mt-3 text-xs font-semibold text-bosphorus-gold">✓ Thank you for subscribing!</p>
+        ) : (
+          <form onSubmit={handleSubscribe} className="mt-3 space-y-2">
+            <div className="flex rounded-lg border border-bosphorus-sand/60 bg-white overflow-hidden focus-within:border-bosphorus-navy">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email..."
+                className="w-full bg-transparent px-3 py-2 text-xs text-bosphorus-charcoal placeholder-bosphorus-charcoal/60 focus:outline-none"
+              />
+              <button
+                type="submit"
+                aria-label="Subscribe"
+                className="flex items-center justify-center bg-bosphorus-navy px-3 text-white transition hover:opacity-90"
+              >
+                →
+              </button>
+            </div>
+            <label className="flex items-start gap-1.5 text-[11px] text-bosphorus-charcoal/80 cursor-pointer">
+              <input
+                type="checkbox"
+                required
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="mt-0.5 rounded border-bosphorus-sand/60 text-bosphorus-navy focus:ring-bosphorus-navy"
+              />
+              <span>I agree to receive emails and updates.</span>
+            </label>
+          </form>
+        )}
+      </div>
     </aside>
   );
 }

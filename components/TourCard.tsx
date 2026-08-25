@@ -80,7 +80,7 @@ export default function TourCard({
 
         {/* Footer pinned to the bottom of the card regardless of content above */}
         {recommended ? (
-          <div className="mt-auto border-t border-gold-500/20 pt-4">
+          <div className="mt-auto border-t border-[#E5A93C]/20 pt-4">
             <div className="flex items-end justify-between gap-2">
               <div>
                 <p className="text-[11px] uppercase tracking-wide text-stone-900/40">from</p>
@@ -90,7 +90,7 @@ export default function TourCard({
                 href={tour.href}
                 target="_blank"
                 rel="noopener nofollow sponsored"
-                className="flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-amber-500/20 transition-all duration-300 hover:scale-[1.03] hover:shadow-amber-500/30"
+                className="flex shrink-0 items-center gap-1.5 rounded-lg bg-[#E5A93C] px-5 py-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
               >
                 {bookNowText}
               </a>
@@ -117,7 +117,7 @@ export default function TourCard({
               href={tour.href}
               target="_blank"
               rel="noopener nofollow sponsored"
-              className="rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-amber-500/20 transition-all duration-300 hover:scale-[1.03] hover:shadow-amber-500/30"
+              className="rounded-lg bg-[#E5A93C] px-5 py-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
             >
               {bookNowText}
             </a>

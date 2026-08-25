@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Cormorant_Garamond } from "next/font/google";
+import { Cormorant_Garamond, Alex_Brush } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
 import { resolveRobots } from "@/lib/seo";
 import { getSiteChrome } from "@/lib/homepage";
@@ -8,11 +8,6 @@ import { hexToRgbTriplet } from "@/lib/color";
 import "./globals.css";
 
 // Forces every page in the app to render dynamically, root layout included
-// — most pages already set this individually for CMS-freshness reasons,
-// but About/Contact didn't, which would let their metadata (and therefore
-// the search-indexing toggle below) get cached at build time instead of
-// re-checked on every request. Setting it here at the root guarantees the
-// toggle takes effect immediately everywhere, no rebuild required.
 export const dynamic = "force-dynamic";
 
 // Real display typeface, loaded once here and exposed as a CSS variable so
@@ -23,6 +18,12 @@ const displayFont = Cormorant_Garamond({
   weight: ["500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-display",
+});
+
+const scriptFont = Alex_Brush({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-script",
 });
 
 // SEO: title + description written to target the site's focus keyword,
@@ -156,7 +157,7 @@ export default async function RootLayout({
   const themeStyle = buildThemeStyle(theme);
 
   return (
-    <html lang="en" className={displayFont.variable}>
+    <html lang="en" className={`${displayFont.variable} ${scriptFont.variable}`}>
       <head>
         {/* Google tag (gtag.js) — replace G-XXXXXXXXXX with this site's own
             GA4 measurement ID before launch (Admin → Analytics, or a

@@ -31,10 +31,10 @@ body {
    are what the live site already looked like before that panel existed,
    so an untouched site renders pixel-identical to before. */
 :root {
-  --color-bosphorus-navy: 8 43 76; /* #082B4C - Bosphorus Navy */
-  --color-bosphorus-gold: 217 164 65; /* #D9A441 - Bosphorus Gold */
-  --color-bosphorus-charcoal: 37 42 45; /* #252A2D - Charcoal */
-  --color-gold-400: 224 182 105; /* #E0B669 - Luminous Bosphorus Gold */
+  --color-bosphorus-navy: 11 30 47; /* #0B1E2F - Maritime Navy */
+  --color-bosphorus-gold: 229 169 60; /* #E5A93C - Warm Radiant Gold */
+  --color-bosphorus-charcoal: 8 24 39; /* #081827 - Deep Sea Charcoal */
+  --color-gold-400: 243 186 79; /* #F3BA4F - Luminous Amber Gold */
 }
 
 /* Shared typography for admin-entered rich text (RichTextEditor.tsx),

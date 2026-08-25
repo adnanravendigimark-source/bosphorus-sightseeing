@@ -29,7 +29,7 @@ export default async function PalacesAndMansions() {
           </ul>
           <a
             href={s.ctaHref}
-            className="mt-6 inline-flex rounded-full bg-bosphorus-navy px-6 py-3 text-sm font-semibold text-white transition hover:bg-bosphorus-navy/90"
+            className="mt-6 inline-flex rounded-lg bg-[#E5A93C] px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
           >
             {s.ctaButtonText}
           </a>

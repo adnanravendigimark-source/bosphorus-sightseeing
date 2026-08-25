@@ -2,17 +2,19 @@
 
 import { useState } from "react";
 import PasswordStrengthField, { calcStrength } from "./PasswordStrengthField";
+import SaveBar from "./SaveBar";
+import { useToast } from "./Toast";
 
 const inputClass =
   "w-full rounded-lg border border-stone-300 px-3 py-2 pr-10 text-sm focus:border-bosphorus-navy focus:outline-none focus:ring-1 focus:ring-bosphorus-navy";
 const labelClass = "mb-1 block text-sm font-medium text-stone-700";
 
 export default function AdminPasswordForm() {
+  const { showToast } = useToast();
   const [currentPw, setCurrentPw] = useState("");
   const [newPw, setNewPw] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [newPwError, setNewPwError] = useState("");
   const [confirmPwError, setConfirmPwError] = useState("");
@@ -38,10 +40,21 @@ export default function AdminPasswordForm() {
     }
   }
 
+  const dirty = !!currentPw || !!newPw || !!confirmPw;
+
+  function handleCancel() {
+    if (dirty && !window.confirm("Discard unsaved changes?")) return;
+    setCurrentPw("");
+    setNewPw("");
+    setConfirmPw("");
+    setNewPwError("");
+    setConfirmPwError("");
+    setError("");
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    setSaved(false);
 
     if (newPw.length < 8) {
       setNewPwError("Must be at least 8 characters.");
@@ -62,24 +75,21 @@ export default function AdminPasswordForm() {
     setSaving(false);
 
     if (!res.ok) {
-      setError(data.error || "Save failed.");
+      const msg = data.error || "Save failed.";
+      setError(msg);
+      showToast("error", msg);
       return;
     }
 
     setCurrentPw("");
     setNewPw("");
     setConfirmPw("");
-    setSaved(true);
+    showToast("success", "Password updated — your new password is active immediately.");
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-      {saved && (
-        <p className="rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
-          Password updated — your new password is active immediately.
-        </p>
-      )}
 
       <div>
         <label className={labelClass} htmlFor="current-pw">
@@ -131,15 +141,12 @@ export default function AdminPasswordForm() {
         Tips: mix upper &amp; lowercase letters, numbers, and symbols for a stronger password.
       </p>
 
-      <div className="border-t border-stone-200 pt-5">
-        <button
-          type="submit"
-          disabled={saving || !!newPwError || !!confirmPwError}
-          className="rounded-lg bg-bosphorus-gold px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90 disabled:opacity-60"
-        >
-          {saving ? "Saving…" : "Update password"}
-        </button>
-      </div>
+      <SaveBar
+        saving={saving}
+        disabled={!dirty || !!newPwError || !!confirmPwError}
+        onCancel={handleCancel}
+        label="Update password"
+      />
     </form>
   );
 }

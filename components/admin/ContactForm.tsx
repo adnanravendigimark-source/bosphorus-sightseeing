@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import IconPicker from "./IconPicker";
 import SeoFieldsCard from "./SeoFieldsCard";
 import RichTextEditor from "./RichTextEditor";
+import SaveBar from "./SaveBar";
+import { useToast } from "./Toast";
 import type { ContactPageContent, ContactReason } from "@/lib/contact";
 
 const inputClass =
@@ -31,14 +33,21 @@ function SectionCard({
 
 export default function ContactForm({ initial }: { initial: ContactPageContent }) {
   const router = useRouter();
+  const { showToast } = useToast();
   const [contact, setContact] = useState<ContactPageContent>(initial);
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+
+  const dirty = useMemo(() => JSON.stringify(contact) !== JSON.stringify(initial), [contact, initial]);
 
   function update<K extends keyof ContactPageContent>(key: K, value: ContactPageContent[K]) {
     setContact((c) => ({ ...c, [key]: value }));
-    setSaved(false);
+  }
+
+  function handleCancel() {
+    if (dirty && !window.confirm("Discard unsaved changes?")) return;
+    setContact(initial);
+    setError("");
   }
 
   function updateReason(i: number, patch: Partial<ContactReason>) {
@@ -67,17 +76,18 @@ export default function ContactForm({ initial }: { initial: ContactPageContent }
     const data = await res.json().catch(() => ({}));
     setSaving(false);
     if (!res.ok) {
-      setError(data.error || "Save failed. Please try again.");
+      const msg = data.error || "Save failed. Please try again.";
+      setError(msg);
+      showToast("error", msg);
       return;
     }
-    setSaved(true);
+    showToast("success", "Saved — live at /contact now.");
     router.refresh();
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-      {saved && <p className="rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">Saved — live at /contact now.</p>}
 
       <SectionCard title="Hero">
         <div>
@@ -98,7 +108,7 @@ export default function ContactForm({ initial }: { initial: ContactPageContent }
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label className={labelClass}>Label above the email</label>
-            <input value={contact.emailLabel} onChange={(e) => update("emailLabel", e.target.value)} className={inputClass} placeholder="Email us directly" />
+            <input value={contact.emailLabel} onChange={(e) => update("emailLabel", e.target.value)} className={inputClass} placeholder="Email Us Directly" />
           </div>
           <div>
             <label className={labelClass}>Contact email</label>
@@ -144,7 +154,7 @@ export default function ContactForm({ initial }: { initial: ContactPageContent }
             </div>
           ))}
         </div>
-        <button type="button" onClick={addReason} className="rounded-lg border border-stone-300 px-3 py-1.5 text-xs font-medium text-stone-700 hover:bg-stone-50">
+        <button type="button" onClick={addReason} className="rounded-lg border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-900 hover:bg-stone-100">
           + Add card
         </button>
       </SectionCard>
@@ -179,21 +189,10 @@ export default function ContactForm({ initial }: { initial: ContactPageContent }
           ogDescription: contact.ogDescription,
           ogImage: contact.ogImage,
         }}
-        onChange={(patch) => {
-          setContact((c) => ({ ...c, ...patch }));
-          setSaved(false);
-        }}
+        onChange={(patch) => setContact((c) => ({ ...c, ...patch }))}
       />
 
-      <div className="border-t border-stone-200 pt-5">
-        <button
-          type="submit"
-          disabled={saving}
-          className="rounded-lg bg-bosphorus-gold px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90 disabled:opacity-60"
-        >
-          {saving ? "Saving…" : "Save Changes"}
-        </button>
-      </div>
+      <SaveBar saving={saving} disabled={!dirty} onCancel={handleCancel} />
     </form>
   );
 }

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import SafeImage from "@/components/SafeImage";
+import BlogIndexContainer from "@/components/BlogIndexContainer";
 import { getPosts } from "@/lib/posts";
 import { getBlogSeoSettings } from "@/lib/settings";
 import { getHomepageContent } from "@/lib/homepage";
-import { resolveRobots, resolveCanonical, resolveOg } from "@/lib/seo";
+import { resolveRobots, resolveCanonical, resolveOg, buildBreadcrumbJsonLd } from "@/lib/seo";
 
 // Posts live in /data/posts.json (or Postgres once configured), editable
 // from /admin/posts — render dynamically so new/edited posts show up
@@ -30,104 +30,78 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogIndexPage() {
-  const [posts, { sections }] = await Promise.all([getPosts(), getHomepageContent()]);
+  const [posts, { sections, heroImage, heroImageAlt }] = await Promise.all([getPosts(), getHomepageContent()]);
   const s = sections.blogPage;
-  const [featured, ...rest] = posts;
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+  ]);
 
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-bosphorus-navy">
-            {s.eyebrow}
-          </p>
-          <h1 className="mt-3 font-display text-3xl font-bold text-stone-900 sm:text-4xl">
-            {s.heading}
-          </h1>
-          <p className="mx-auto mt-3 max-w-md text-stone-900/60">{s.subheading}</p>
-        </div>
+      <main className="min-h-screen bg-white">
+        {/* Blog Hero Banner — matching the About page's light hero */}
+        <section className="relative overflow-hidden bg-white border-b border-bosphorus-sand/40">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <SafeImage
+              src={heroImage}
+              alt={heroImageAlt || "Bosphorus strait in daylight"}
+              fill
+              priority
+              quality={75}
+              sizes="100vw"
+              className="object-cover object-[80%_center] md:object-[78%_center] lg:object-right"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 via-45% md:from-white/90 md:via-white/60 md:via-50% lg:via-52% to-transparent" />
+          </div>
 
-        {!featured && (
-          <p className="mt-14 rounded-3xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500">
-            {s.emptyStateText}
-          </p>
-        )}
+          <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 py-16 sm:py-20 lg:py-24">
+            <div className="max-w-2xl">
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="text-xs font-medium text-bosphorus-charcoal/70">
+                <ol className="flex items-center gap-1.5">
+                  <li>
+                    <Link href="/" className="hover:text-bosphorus-gold transition-colors">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="text-bosphorus-charcoal/40">&gt;</li>
+                  <li className="font-semibold text-bosphorus-navy" aria-current="page">
+                    Blog &amp; Guides
+                  </li>
+                </ol>
+              </nav>
 
-        {/* Featured post */}
-        {featured && (
-          <Link
-            href={`/blog/${featured.slug}`}
-            className="group mt-14 grid gap-0 overflow-hidden rounded-3xl border border-stone-900/10 bg-white shadow-sm transition hover:shadow-xl md:grid-cols-2"
-          >
-            <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto">
-              <SafeImage
-                src={featured.image}
-                alt={featured.imageAlt}
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div className="flex flex-col justify-center p-8 sm:p-10">
-              <span className="inline-flex w-fit rounded-full bg-bosphorus-navy/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-bosphorus-navy">
-                {featured.category}
+              <span className="mt-4 inline-block text-xs font-bold uppercase tracking-widest text-bosphorus-gold">
+                {s.eyebrow}
               </span>
-              <h2 className="mt-4 font-display text-2xl font-bold text-stone-900 group-hover:text-bosphorus-gold">
-                {featured.title}
-              </h2>
-              <p className="mt-3 line-clamp-3 text-stone-900/70">{featured.excerpt}</p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-bosphorus-gold">
-                {s.featuredLinkText} <span className="transition group-hover:translate-x-0.5">→</span>
-              </span>
+
+              <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-bosphorus-navy sm:text-4xl lg:text-5xl">
+                {s.heading}
+              </h1>
+
+              {/* Gold accent line */}
+              <div className="mt-3.5 mb-4 h-[2.5px] w-12 rounded-full bg-bosphorus-gold" />
+
+              <p className="mt-2 text-xs leading-relaxed text-bosphorus-charcoal/85 sm:text-sm">
+                {s.subheading}
+              </p>
             </div>
-          </Link>
-        )}
+          </div>
+        </section>
 
-        {/* Remaining posts */}
-        <div className="mt-8 grid gap-8 sm:grid-cols-2">
-          {rest.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group overflow-hidden rounded-2xl border border-stone-900/10 bg-white shadow-sm transition hover:shadow-lg"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <SafeImage
-                  src={post.image}
-                  alt={post.imageAlt}
-                  fill
-                  sizes="(min-width: 640px) 45vw, 100vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex rounded-full bg-bosphorus-navy/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-bosphorus-navy">
-                    {post.category}
-                  </span>
-                  <span className="text-xs text-stone-900/40">{post.readTime}</span>
-                </div>
-                <h2 className="mt-3 font-display text-lg font-semibold text-stone-900 group-hover:text-bosphorus-gold">
-                  {post.title}
-                </h2>
-                <p className="mt-2 line-clamp-3 text-sm text-stone-900/60">{post.excerpt}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-16 flex flex-col items-center gap-4 rounded-3xl bg-bosphorus-navy/5 p-10 text-center">
-          <p className="font-display text-xl font-semibold text-stone-900">{s.ctaHeading}</p>
-          <a
-            href="/#tours"
-            className="rounded-full bg-bosphorus-gold px-6 py-3 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90"
-          >
-            {s.ctaButtonText}
-          </a>
-        </div>
+        {/* Main Content Area */}
+        <BlogIndexContainer
+          posts={posts}
+          emptyStateText={s.emptyStateText}
+          ctaHeading={s.ctaHeading}
+          ctaBody="Best cruise prices, instant confirmation, and free cancellation on most tickets."
+          ctaButtonText={s.ctaButtonText}
+        />
       </main>
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     </>
   );
 }

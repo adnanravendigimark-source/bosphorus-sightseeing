@@ -66,6 +66,10 @@
     "imageAlt": "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
     "recommendedTourId": "bosphorus-short-circle-sightseeing-cruise",
     "recommendedTourAfterBlock": 5,
+    "ctaHeading": "Ready to book?",
+    "ctaBody": "Compare Short Circle and full-day cruise prices side by side.",
+    "ctaButtonText": "See Price Comparison",
+    "ctaButtonHref": "/#prices",
     "content": [
       {
         "type": "paragraph",
@@ -111,6 +115,10 @@
     "imageAlt": "A domed waterfront tower on the Bosphorus strait in Istanbul during the day",
     "recommendedTourId": "bosphorus-two-continents-afternoon-tour",
     "recommendedTourAfterBlock": 2,
+    "ctaHeading": "Want the Two Continents tour?",
+    "ctaBody": "See what's included and check today's departure times.",
+    "ctaButtonText": "See the Two Continents Tour",
+    "ctaButtonHref": "/#tours",
     "content": [
       {
         "type": "heading",

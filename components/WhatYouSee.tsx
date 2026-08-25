@@ -57,11 +57,11 @@ export default async function WhatYouSee() {
           </div>
         )}
 
-        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl bg-bosphorus-navy/5 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-[#0B1E2F]/10 bg-[#0B1E2F]/5 p-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-medium text-stone-900">{s.ctaText}</p>
           <a
             href={s.ctaHref}
-            className="shrink-0 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-6 py-3 text-sm font-bold text-white shadow-md shadow-amber-500/20 transition-all duration-300 hover:scale-[1.03] hover:shadow-amber-500/30"
+            className="shrink-0 rounded-lg bg-[#E5A93C] px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
           >
             {s.ctaButtonText}
           </a>

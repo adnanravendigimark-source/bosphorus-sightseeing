@@ -50,13 +50,13 @@ export default function AdminShell({
   }
 
   return (
-    <div className="flex min-h-screen bg-stone-100 font-body text-stone-900">
+    <div className="flex h-screen overflow-hidden bg-stone-100 font-body text-stone-900">
       <div
         className={`shrink-0 overflow-hidden sm:transition-[width] sm:duration-200 sm:ease-in-out ${
           collapsed ? "sm:w-0" : "sm:w-64"
         } ${hydrated ? "" : "sm:w-64"}`}
       >
-        <aside className="hidden h-full w-64 flex-col bg-stone-900 text-white sm:flex">
+        <aside className="hidden h-screen w-64 flex-col overflow-y-auto bg-stone-900 text-white sm:flex">
           {/* Sidebar is narrower than the public header, so this is a
               purpose-sized brand mark rather than the full <Logo /> — that
               component's wordmark needs more width than 256px leaves room
@@ -101,9 +101,9 @@ export default function AdminShell({
         </aside>
       </div>
 
-      <div className="min-w-0 flex-1">
+      <div className="flex min-w-0 flex-1 flex-col">
         {/* Top admin bar */}
-        <header className="flex items-center justify-between border-b border-stone-900/10 bg-white px-4 py-3.5 sm:px-8">
+        <header className="flex shrink-0 items-center justify-between border-b border-stone-900/10 bg-white px-4 py-3.5 sm:px-8">
           <div className="flex items-center gap-3">
             <button
               type="button"
@@ -155,9 +155,11 @@ export default function AdminShell({
         </header>
 
         <AdminMobileNav isAdmin={isAdmin} pages={pages} />
-        <main className="mx-auto max-w-[100rem] px-4 py-8 sm:px-8 sm:py-10">
-          <ToastProvider>{children}</ToastProvider>
-        </main>
+        <div className="flex-1 overflow-y-auto">
+          <main className="mx-auto max-w-[100rem] px-4 py-8 sm:px-8 sm:py-10">
+            <ToastProvider>{children}</ToastProvider>
+          </main>
+        </div>
       </div>
     </div>
   );

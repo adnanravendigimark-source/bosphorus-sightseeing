@@ -1,18 +1,18 @@
 {
-  "heroBadge": "⚓ Certified operators · Free cancellation · Instant confirmation",
-  "heroHeading": "Bosphorus Sightseeing Cruise Tour Tickets — See Istanbul From the Water",
-  "heroSubheading": "Glide past Dolmabahçe Palace, Ortaköy Mosque, and the Bosphorus Bridge on a day or afternoon sightseeing cruise. Book online — instant confirmation, free cancellation on most tickets. No night or dinner cruises here.",
+  "heroBadge": "BOSPHORUS SIGHTSEEING CRUISE TOUR",
+  "heroHeading": "Bosphorus Sightseeing Cruise Tour",
+  "heroSubheading": "Sail between Europe and Asia and discover Istanbul's most stunning views, historic landmarks and unforgettable moments.",
   "heroImage": "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=2400&auto=format&fit=crop",
-  "heroImageAlt": "Istanbul skyline with mosques along the Bosphorus strait in daylight",
-  "ratingValue": "4.35 / 5",
-  "ratingCount": "18,000+ verified reviews",
+  "heroImageAlt": "Sightseeing cruise boat on the Bosphorus strait in front of Ortakoy Mosque and bridge",
+  "ratingValue": "4.7 / 5",
+  "ratingCount": "3,250+ reviews",
   "showFeaturedTour": true,
   "featuredTourId": "bosphorus-short-circle-sightseeing-cruise",
-  "featuredBadgeLabel": "Most Popular",
-  "featuredUrgencyText": "Best Price · Limited Spots Available",
+  "featuredBadgeLabel": "Recommended",
+  "featuredUrgencyText": "Best Price · Limited Availability",
   "featuredReasons": [
-    "18,000+ verified reviews — rated 4.35 / 5 on GetYourGuide",
+    "Our most-booked cruise — 3,250+ reviews, averaging 4.7 stars",
     "Departs several times a day, April through October",
-    "Free cancellation up to 24 hours before departure"
+    "Free cancellation up to 24 hours before"
   ]
 }

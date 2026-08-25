@@ -10,7 +10,7 @@ export default function QuickAnswer({
   label?: string;
 }) {
   return (
-    <div id="quick-answer" className="mt-6 flex scroll-mt-24 gap-3 rounded-2xl border border-gold-500/25 bg-gold-500/5 p-5">
+    <div id="quick-answer" className="mt-2 flex scroll-mt-24 gap-3 rounded-2xl border border-gold-500/25 bg-gold-500/5 p-5">
       <span className="mt-0.5 text-lg text-gold-600">💡</span>
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-gold-600">

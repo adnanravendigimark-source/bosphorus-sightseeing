@@ -9,6 +9,8 @@ import RepeatableList from "./RepeatableList";
 import SeoPreview from "./SeoPreview";
 import CharCounter from "./CharCounter";
 import ColorField from "./ColorField";
+import SaveBar from "./SaveBar";
+import { useToast } from "./Toast";
 import type {
   HomepageContent,
   NavLink,
@@ -129,11 +131,19 @@ function SectionCard({
 
 export default function HomepageForm({ initial, tours }: { initial: HomepageContent; tours: Tour[] }) {
   const router = useRouter();
+  const { showToast } = useToast();
   const [content, setContent] = useState<HomepageContent>(initial);
   const [activeTab, setActiveTab] = useState<TabKey>("content");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+  const dirty = useMemo(() => JSON.stringify(content) !== JSON.stringify(initial), [content, initial]);
+
+  function handleCancel() {
+    if (dirty && !window.confirm("Discard unsaved changes?")) return;
+    setContent(initial);
+    setError("");
+  }
   // Only the first section starts open — everything else is one click (or
   // one "Jump to section" tap) away, so the tab doesn't read as one long
   // wall of fields.
@@ -265,10 +275,13 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
     const data = await res.json().catch(() => ({}));
     setSaving(false);
     if (!res.ok) {
-      setError(data.error || "Save failed. Please try again.");
+      const msg = data.error || "Save failed. Please try again.";
+      setError(msg);
+      showToast("error", msg);
       return;
     }
     setSaved(true);
+    showToast("success", "Saved — live on the site now.");
     router.refresh();
   }
 
@@ -1070,18 +1083,12 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
         </div>
       )}
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-stone-200 bg-white/95 px-4 py-3 backdrop-blur sm:pl-[17rem]">
-        <div className="mx-auto flex max-w-4xl items-center justify-between">
-          <p className="text-xs text-stone-500">Changes save across all tabs at once.</p>
-          <button
-            type="submit"
-            disabled={saving}
-            className="rounded-lg bg-bosphorus-gold px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90 disabled:opacity-60"
-          >
-            {saving ? "Saving…" : "Save Changes"}
-          </button>
-        </div>
-      </div>
+      <SaveBar
+        saving={saving}
+        disabled={!dirty}
+        onCancel={handleCancel}
+        note="Changes save across all tabs at once."
+      />
     </form>
   );
 }

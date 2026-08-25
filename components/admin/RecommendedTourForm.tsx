@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import SaveBar from "./SaveBar";
+import { useToast } from "./Toast";
 import type { HomepageContent } from "@/lib/homepage";
 import type { Tour } from "@/lib/data";
 
@@ -20,14 +22,21 @@ export default function RecommendedTourForm({
   tours: Tour[];
 }) {
   const router = useRouter();
+  const { showToast } = useToast();
   const [content, setContent] = useState<HomepageContent>(initial);
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+
+  const dirty = useMemo(() => JSON.stringify(content) !== JSON.stringify(initial), [content, initial]);
 
   function update<K extends keyof HomepageContent>(key: K, value: HomepageContent[K]) {
     setContent((c) => ({ ...c, [key]: value }));
-    setSaved(false);
+  }
+
+  function handleCancel() {
+    if (dirty && !window.confirm("Discard unsaved changes?")) return;
+    setContent(initial);
+    setError("");
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -41,21 +50,18 @@ export default function RecommendedTourForm({
     });
     setSaving(false);
     if (!res.ok) {
-      setError("Save failed. Please try again.");
+      const msg = "Save failed. Please try again.";
+      setError(msg);
+      showToast("error", msg);
       return;
     }
-    setSaved(true);
+    showToast("success", "Saved — live on the tours grid (and mobile sticky bar) now.");
     router.refresh();
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-      {saved && (
-        <p className="rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
-          Saved — live on the tours grid (and mobile sticky bar) now.
-        </p>
-      )}
 
       <label className="flex items-center gap-2 text-sm font-semibold text-stone-900">
         <input
@@ -107,15 +113,7 @@ export default function RecommendedTourForm({
         </div>
       </div>
 
-      <div className="border-t border-stone-200 pt-5">
-        <button
-          type="submit"
-          disabled={saving}
-          className="rounded-lg bg-bosphorus-gold px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90 disabled:opacity-60"
-        >
-          {saving ? "Saving…" : "Save Changes"}
-        </button>
-      </div>
+      <SaveBar saving={saving} disabled={!dirty} onCancel={handleCancel} />
     </form>
   );
 }

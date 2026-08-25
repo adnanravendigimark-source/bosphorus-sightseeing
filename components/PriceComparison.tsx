@@ -20,7 +20,7 @@ export default async function PriceComparison() {
       <div className="mt-8 overflow-x-auto rounded-2xl border border-stone-900/10">
         <table className="w-full min-w-[680px] border-collapse bg-white text-left text-sm">
           <thead>
-            <tr className="bg-stone-900 text-white">
+            <tr className="bg-[#081827] text-white">
               <th className="px-5 py-4 font-semibold">{s.itemLabel}</th>
               <th className="px-5 py-4 font-semibold">{s.priceLabel}</th>
               <th className="px-5 py-4 font-semibold">{s.column1Label}</th>
@@ -34,11 +34,11 @@ export default async function PriceComparison() {
               <tr
                 key={tour.id}
                 className={`border-t border-stone-900/10 ${
-                  tour.ribbon === "Bestseller" ? "bg-bosphorus-navy/5" : i % 2 ? "bg-stone-50" : ""
+                  tour.ribbon === "Bestseller" ? "bg-[#0B1E2F]/5" : i % 2 ? "bg-stone-50" : ""
                 }`}
               >
                 <td className="px-5 py-4 font-medium text-stone-900">{tour.title}</td>
-                <td className="px-5 py-4 font-semibold text-bosphorus-gold">
+                <td className="px-5 py-4 font-semibold text-[#E5A93C]">
                   €{tour.price} <span className="font-normal text-stone-900/40">/ person</span>
                 </td>
                 <td className="px-5 py-4 text-stone-900/70">{tour.priceTableColumn1 || tour.duration}</td>
@@ -49,7 +49,7 @@ export default async function PriceComparison() {
                     href={tour.href}
                     target="_blank"
                     rel="noopener nofollow sponsored"
-                    className="inline-flex rounded-full bg-bosphorus-gold px-4 py-2 text-xs font-semibold text-white transition hover:bg-bosphorus-gold/90"
+                    className="inline-flex rounded-lg bg-[#E5A93C] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#081827] shadow-sm transition hover:bg-[#D99B26]"
                   >
                     {s.bookLabel}
                   </a>

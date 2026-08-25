@@ -37,7 +37,7 @@ export default async function FeaturedTour() {
           href={tour.href}
           target="_blank"
           rel="noopener nofollow sponsored"
-          className="shrink-0 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-amber-500/20 transition hover:scale-[1.02]"
+          className="shrink-0 rounded-lg bg-[#E5A93C] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition hover:bg-[#D99B26]"
         >
           {bookNowText}
         </a>

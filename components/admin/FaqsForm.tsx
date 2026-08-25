@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "./RichTextEditor";
+import SaveBar from "./SaveBar";
+import { useToast } from "./Toast";
 import type { FAQ } from "@/lib/data";
 
 const inputClass =
@@ -10,16 +12,17 @@ const inputClass =
 
 export default function FaqsForm({ initial }: { initial: FAQ[] }) {
   const router = useRouter();
+  const { showToast } = useToast();
   const [faqs, setFaqs] = useState<FAQ[]>(initial);
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+
+  const dirty = useMemo(() => JSON.stringify(faqs) !== JSON.stringify(initial), [faqs, initial]);
 
   function update(i: number, field: keyof FAQ, value: string) {
     const next = [...faqs];
     next[i] = { ...next[i], [field]: value };
     setFaqs(next);
-    setSaved(false);
   }
 
   function addFaq() {
@@ -28,6 +31,12 @@ export default function FaqsForm({ initial }: { initial: FAQ[] }) {
 
   function removeFaq(i: number) {
     setFaqs(faqs.filter((_, idx) => idx !== i));
+  }
+
+  function handleCancel() {
+    if (dirty && !window.confirm("Discard unsaved changes?")) return;
+    setFaqs(initial);
+    setError("");
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -41,17 +50,18 @@ export default function FaqsForm({ initial }: { initial: FAQ[] }) {
     });
     setSaving(false);
     if (!res.ok) {
-      setError("Save failed. Please try again.");
+      const msg = "Save failed. Please try again.";
+      setError(msg);
+      showToast("error", msg);
       return;
     }
-    setSaved(true);
+    showToast("success", "Saved — live on the homepage FAQ section now.");
     router.refresh();
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-      {saved && <p className="rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">Saved — live on the homepage FAQ section now.</p>}
 
       {faqs.map((faq, i) => (
         <div key={i} className="rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
@@ -80,20 +90,12 @@ export default function FaqsForm({ initial }: { initial: FAQ[] }) {
       <button
         type="button"
         onClick={addFaq}
-        className="rounded-lg border border-dashed border-stone-300 px-4 py-2.5 text-sm font-medium text-stone-600 transition hover:bg-stone-50"
+        className="rounded-lg border border-dashed border-stone-300 bg-white px-4 py-2.5 text-sm font-semibold text-stone-900 transition hover:bg-stone-100"
       >
         + Add FAQ
       </button>
 
-      <div className="border-t border-stone-200 pt-5">
-        <button
-          type="submit"
-          disabled={saving}
-          className="rounded-lg bg-bosphorus-gold px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90 disabled:opacity-60"
-        >
-          {saving ? "Saving…" : "Save Changes"}
-        </button>
-      </div>
+      <SaveBar saving={saving} disabled={!dirty} onCancel={handleCancel} />
     </form>
   );
 }

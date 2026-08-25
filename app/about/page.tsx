@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SafeImage from "@/components/SafeImage";
 import { getAboutPage } from "@/lib/about";
-import { resolveRobots, resolveCanonical, resolveOg } from "@/lib/seo";
+import { resolveRobots, resolveCanonical, resolveOg, buildBreadcrumbJsonLd } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -34,58 +34,78 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   const about = await getAboutPage();
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+  ]);
 
   return (
     <>
       <Header />
-      <main>
-        {/* Hero banner */}
-        <section className="relative overflow-hidden bg-bosphorus-charcoal text-white">
-          <div className="absolute inset-0">
+      <main className="bg-white">
+        {/* Hero banner — light background with the hero photo bled in from
+            the right and a soft gradient wash (left-aligned copy, image
+            never fully hides the text at any breakpoint). */}
+        <section className="relative overflow-hidden bg-white border-b border-bosphorus-sand/40">
+          <div className="absolute inset-0 z-0 pointer-events-none">
             <SafeImage
               src={about.heroImage}
               alt={about.heroImageAlt}
               fill
               priority
+              quality={75}
               sizes="100vw"
-              className="object-cover object-center opacity-35"
+              className="object-cover object-[80%_center] md:object-[78%_center] lg:object-right"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-bosphorus-charcoal via-bosphorus-charcoal/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 via-45% md:from-white/90 md:via-white/60 md:via-50% lg:via-52% to-transparent" />
           </div>
-          <div className="relative mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 sm:py-20">
-            <nav aria-label="Breadcrumb" className="text-xs font-medium text-white/70">
-              <ol className="flex items-center justify-center gap-1.5">
-                <li>
-                  <Link href="/" className="hover:text-white transition-colors">
-                    Home
-                  </Link>
-                </li>
-                <li className="text-white/40">&gt;</li>
-                <li className="font-semibold text-white" aria-current="page">
-                  About Us
-                </li>
-              </ol>
-            </nav>
-            <span className="mt-4 inline-block text-xs font-bold uppercase tracking-widest text-gold-400">
-              {about.heroEyebrow}
-            </span>
-            <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              {about.heroHeading}
-            </h1>
-            <div
-              className="rich-content rich-content-invert mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/90 sm:text-base"
-              dangerouslySetInnerHTML={{ __html: about.heroSubheading }}
-            />
+
+          <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 py-16 sm:py-20 lg:py-24">
+            <div className="max-w-2xl">
+              <nav aria-label="Breadcrumb" className="text-xs font-medium text-bosphorus-charcoal/70">
+                <ol className="flex items-center gap-1.5">
+                  <li>
+                    <Link href="/" className="hover:text-bosphorus-gold transition-colors">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="text-bosphorus-charcoal/40">&gt;</li>
+                  <li className="font-semibold text-bosphorus-navy" aria-current="page">
+                    About Us
+                  </li>
+                </ol>
+              </nav>
+
+              <span className="mt-4 inline-block text-xs font-bold uppercase tracking-widest text-bosphorus-gold">
+                {about.heroEyebrow}
+              </span>
+
+              <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-bosphorus-navy sm:text-4xl lg:text-5xl">
+                {about.heroHeading}
+              </h1>
+
+              {/* Gold accent line */}
+              <div className="mt-3.5 mb-4 h-[2.5px] w-12 rounded-full bg-bosphorus-gold" />
+
+              <div
+                className="rich-content mt-3 text-xs leading-relaxed text-bosphorus-charcoal/85 sm:text-sm"
+                dangerouslySetInnerHTML={{ __html: about.heroSubheading }}
+              />
+            </div>
           </div>
         </section>
 
         {/* Page body — one flowing rich-text article, written and edited
             just like a blog post (see lib/about.ts's `content` field). */}
-        <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6 sm:py-20">
-          <div className="rich-content leading-relaxed text-stone-900/80" dangerouslySetInnerHTML={{ __html: about.content }} />
+        <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
+          <div
+            className="rich-content text-sm sm:text-[15px] leading-relaxed text-bosphorus-charcoal/85"
+            dangerouslySetInnerHTML={{ __html: about.content }}
+          />
         </div>
       </main>
       <Footer />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     </>
   );
 }
