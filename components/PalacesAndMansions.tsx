@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SafeImage from "./SafeImage";
 import { getHomepageContent } from "@/lib/homepage";
 
 // Content editable from /admin/homepage → Content tab (see
@@ -8,47 +8,52 @@ export default async function PalacesAndMansions() {
   const s = sections.tower;
 
   return (
-    <section id="palaces-mansions" className="bg-bosphorus-navy/5 py-16">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
+    <section id="palaces-mansions" className="bg-white py-20 sm:py-24 border-y border-stone-100">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-8 lg:grid-cols-2 lg:items-center">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-bosphorus-navy">
-            {s.eyebrow}
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-stone-50 border border-stone-200 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-bosphorus-gold">
+            <span>🕌</span> {s.eyebrow}
           </span>
-          <h2 className="mt-2 font-display text-3xl font-bold text-stone-900">{s.heading}</h2>
-          <p
-            className="rich-content mt-4 text-stone-900/70"
+          <h2 className="mt-3 font-display text-2xl sm:text-3xl lg:text-[2.15rem] font-bold text-bosphorus-navy leading-[1.2] tracking-tight">
+            {s.heading}
+          </h2>
+          <div
+            className="rich-content mt-4 text-sm text-stone-900/85 leading-relaxed"
             dangerouslySetInnerHTML={{ __html: s.body }}
           />
-          <ul className="mt-6 space-y-3 text-sm text-stone-900/80">
+          <ul className="mt-6 space-y-3.5 text-xs sm:text-sm font-medium text-stone-900">
             {s.bullets.map((bullet, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-bosphorus-navy">✨</span>
-                {bullet}
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-bosphorus-navy text-white text-[10px] font-bold">
+                  ✓
+                </span>
+                <span className="leading-snug">{bullet}</span>
               </li>
             ))}
           </ul>
           <a
             href={s.ctaHref}
-            className="mt-6 inline-flex rounded-lg bg-[#E5A93C] px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#081827] shadow-md shadow-[#E5A93C]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
+            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-bosphorus-navy px-6 py-3 text-xs font-bold uppercase tracking-widest text-white shadow-sm transition-all hover:bg-bosphorus-navy/90 hover:shadow-md"
           >
-            {s.ctaButtonText}
+            {s.ctaButtonText} →
           </a>
         </div>
         <div className="grid grid-cols-2 gap-4">
           {s.images.map((img, i) => (
             <div
               key={img.label + i}
-              className="group relative h-32 overflow-hidden rounded-xl border border-bosphorus-navy/20 shadow-sm sm:h-40"
+              className="group relative h-36 overflow-hidden rounded-2xl border border-stone-200 shadow-md sm:h-44 bg-bosphorus-navy"
             >
-              <Image
+              <SafeImage
                 src={img.src}
                 alt={img.alt}
                 fill
+                quality={70}
                 sizes="(min-width: 1024px) 20vw, 45vw"
                 className="object-cover transition duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/0 to-black/0" />
-              <span className="absolute bottom-2 left-2.5 text-xs font-semibold text-white drop-shadow">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <span className="absolute bottom-3 left-3 text-xs font-bold text-white drop-shadow">
                 {img.label}
               </span>
             </div>

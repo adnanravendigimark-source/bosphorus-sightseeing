@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import RiverHighlights from "@/components/RiverHighlights";
-import FeaturedTour from "@/components/FeaturedTour";
 import TourGrid from "@/components/TourGrid";
 import WhatYouSee from "@/components/WhatYouSee";
 import PalacesAndMansions from "@/components/PalacesAndMansions";
 import PracticalInfo from "@/components/PracticalInfo";
 import PriceComparison from "@/components/PriceComparison";
-import FAQSection from "@/components/FAQSection";
 import BlogSection from "@/components/BlogSection";
+import FAQSection from "@/components/FAQSection";
+import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
 import { getTours } from "@/lib/data";
 import { getHomepageContent } from "@/lib/homepage";
@@ -80,8 +79,6 @@ export default async function HomePage() {
       <Header />
       <main>
         <Hero />
-        <RiverHighlights />
-        <FeaturedTour />
         <TourGrid />
         <WhatYouSee />
         <PalacesAndMansions />
@@ -89,8 +86,7 @@ export default async function HomePage() {
         <PriceComparison />
         <BlogSection />
         <FAQSection />
-        {/* Spacer so the mobile sticky booking bar never covers the footer */}
-        <div className="h-20 sm:hidden" aria-hidden="true" />
+        <CtaBanner />
       </main>
       <Footer />
       {productJsonLd.map((data, i) => (

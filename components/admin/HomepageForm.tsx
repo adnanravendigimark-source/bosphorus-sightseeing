@@ -49,6 +49,7 @@ const CONTENT_SECTIONS = [
   { id: "sec-tower", label: "Waterfront Palaces & Mansions" },
   { id: "sec-practical", label: "Practical Info" },
   { id: "sec-price", label: "Price Comparison" },
+  { id: "sec-ctabanner", label: "Bottom CTA Banner" },
   { id: "sec-blogteaser", label: "Blog Teaser" },
   { id: "sec-faq", label: "FAQ" },
   { id: "sec-blogpages", label: "Blog Pages" },
@@ -220,6 +221,14 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
 
   function updateFaq(patch: Partial<HomepageContent["sections"]["faq"]>) {
     setContent((c) => ({ ...c, sections: { ...c.sections, faq: { ...c.sections.faq, ...patch } } }));
+    setSaved(false);
+  }
+
+  function updateCtaBanner(patch: Partial<HomepageContent["sections"]["ctaBanner"]>) {
+    setContent((c) => ({
+      ...c,
+      sections: { ...c.sections, ctaBanner: { ...c.sections.ctaBanner, ...patch } },
+    }));
     setSaved(false);
   }
 
@@ -466,6 +475,9 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
             open={!!openSections["sec-tourgrid"]}
             onToggle={() => toggleSection("sec-tourgrid")}
           >
+            <Field label="Eyebrow (small label above the heading)">
+              <input value={content.sections.tours.eyebrow} onChange={(e) => updateTours({ eyebrow: e.target.value })} className={inputClass} />
+            </Field>
             <Field label="Section heading (H2)">
               <input value={content.sections.tours.heading} onChange={(e) => updateTours({ heading: e.target.value })} className={inputClass} />
             </Field>
@@ -481,6 +493,9 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
             open={!!openSections["sec-why"]}
             onToggle={() => toggleSection("sec-why")}
           >
+            <Field label="Eyebrow (small label above the heading)">
+              <input value={content.sections.why.eyebrow} onChange={(e) => updateWhy({ eyebrow: e.target.value })} className={inputClass} />
+            </Field>
             <Field label="Section heading (H2)">
               <input value={content.sections.why.heading} onChange={(e) => updateWhy({ heading: e.target.value })} className={inputClass} />
             </Field>
@@ -643,6 +658,9 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
             open={!!openSections["sec-price"]}
             onToggle={() => toggleSection("sec-price")}
           >
+            <Field label="Eyebrow (small label above the heading)">
+              <input value={content.sections.price.eyebrow} onChange={(e) => updatePrice({ eyebrow: e.target.value })} className={inputClass} />
+            </Field>
             <Field label="Heading (H2)">
               <input value={content.sections.price.heading} onChange={(e) => updatePrice({ heading: e.target.value })} className={inputClass} />
             </Field>
@@ -719,6 +737,29 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
           </SectionCard>
 
           <SectionCard
+            id="sec-ctabanner"
+            title="Bottom CTA banner"
+            description="The dark call-to-action banner at the very end of the homepage, right before the footer."
+            open={!!openSections["sec-ctabanner"]}
+            onToggle={() => toggleSection("sec-ctabanner")}
+          >
+            <Field label="Heading">
+              <input value={content.sections.ctaBanner.heading} onChange={(e) => updateCtaBanner({ heading: e.target.value })} className={inputClass} />
+            </Field>
+            <Field label="Subtext">
+              <input value={content.sections.ctaBanner.subtext} onChange={(e) => updateCtaBanner({ subtext: e.target.value })} className={inputClass} />
+            </Field>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Button text">
+                <input value={content.sections.ctaBanner.buttonText} onChange={(e) => updateCtaBanner({ buttonText: e.target.value })} className={inputClass} />
+              </Field>
+              <Field label="Button link">
+                <input value={content.sections.ctaBanner.buttonHref} onChange={(e) => updateCtaBanner({ buttonHref: e.target.value })} className={inputClass} />
+              </Field>
+            </div>
+          </SectionCard>
+
+          <SectionCard
             id="sec-blogteaser"
             title="Blog teaser section"
             description={'The "From the Blog" section on the homepage, right above the FAQ.'}
@@ -753,6 +794,9 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
             open={!!openSections["sec-faq"]}
             onToggle={() => toggleSection("sec-faq")}
           >
+            <Field label="Eyebrow (small label above the heading)">
+              <input value={content.sections.faq.eyebrow} onChange={(e) => updateFaq({ eyebrow: e.target.value })} className={inputClass} />
+            </Field>
             <Field label="Heading (H2)">
               <input value={content.sections.faq.heading} onChange={(e) => updateFaq({ heading: e.target.value })} className={inputClass} />
             </Field>

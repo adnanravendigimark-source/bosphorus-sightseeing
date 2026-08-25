@@ -34,6 +34,7 @@ export interface FooterColumn {
 // Tour grid intro (the heading + subheading directly above the tour cards,
 // right below the hero — see components/TourGrid.tsx).
 export interface TourSection {
+  eyebrow: string;
   heading: string;
   subheading: string;
 }
@@ -41,6 +42,7 @@ export interface TourSection {
 // "What You See" section (the route timeline + what-you'll-notice section
 // right below the tour grid).
 export interface WhySection {
+  eyebrow: string;
   heading: string;
   intro: string; // rich text HTML
   timelineHeading: string;
@@ -95,6 +97,7 @@ export interface PracticalSection {
 
 // "Compare & Choose" price table intro.
 export interface PriceSection {
+  eyebrow: string;
   heading: string;
   subheading: string;
   note: string;
@@ -116,6 +119,7 @@ export interface PriceSection {
 // The questions/answers themselves are separately admin-editable via
 // /admin/faqs (lib/data.ts's getFaqs()).
 export interface FaqSection {
+  eyebrow: string;
   heading: string;
 }
 
@@ -166,6 +170,15 @@ export interface BlogPageSection {
   promoRecommendedText: string;
 }
 
+// Dark call-to-action banner at the very end of the homepage, right before
+// the footer — see components/CtaBanner.tsx.
+export interface CtaBannerSection {
+  heading: string;
+  subtext: string;
+  buttonText: string;
+  buttonHref: string;
+}
+
 export interface HomepageSections {
   tours: TourSection;
   highlights: HighlightsSection;
@@ -173,6 +186,7 @@ export interface HomepageSections {
   tower: TowerSection;
   practical: PracticalSection;
   price: PriceSection;
+  ctaBanner: CtaBannerSection;
   faq: FaqSection;
   notFound: NotFoundSection;
   blogTeaser: BlogTeaserSection;
@@ -358,6 +372,7 @@ export const DEFAULT_GALLERY: GalleryImage[] = [
 
 export const DEFAULT_SECTIONS: HomepageSections = {
   tours: {
+    eyebrow: "Bosphorus Cruises & Tickets",
     heading: "Bosphorus Sightseeing Cruise Tours & Tickets",
     subheading:
       "Four clear options — a quick short circle cruise, a full-day cruise to Anadolu Kavağı, a lunch cruise, and a Two Continents combo. Every departure runs in daylight or the afternoon, never at night.",
@@ -391,6 +406,7 @@ export const DEFAULT_SECTIONS: HomepageSections = {
     ],
   },
   why: {
+    eyebrow: "The Route",
     heading: "What You Actually See on a Bosphorus Sightseeing Cruise",
     intro:
       "Two hours, one loop, and more of Istanbul's skyline than you could comfortably reach on foot in an afternoon. Here's the Short Circle Cruise route, landmark by landmark.",
@@ -475,6 +491,7 @@ export const DEFAULT_SECTIONS: HomepageSections = {
       "Morning departures get the clearest light for photos and the shortest boarding lines — book a 9:30–10:30 AM slot if you can. June through August is peak season, so weekday mornings book out fastest.",
   },
   price: {
+    eyebrow: "Compare & Choose",
     heading: "Compare & Choose Your Cruise",
     subheading:
       "All four options side by side — pick the one that fits your trip, then book straight from the table.",
@@ -486,7 +503,14 @@ export const DEFAULT_SECTIONS: HomepageSections = {
     bestForLabel: "Best For",
     bookLabel: "Book",
   },
+  ctaBanner: {
+    heading: "Ready to Cruise the Bosphorus?",
+    subtext: "Book your sightseeing cruise today and see Istanbul's skyline the way it's meant to be seen — from the water.",
+    buttonText: "Explore Cruises",
+    buttonHref: "#tours",
+  },
   faq: {
+    eyebrow: "Frequently Asked Questions",
     heading: "Bosphorus Cruise FAQs",
   },
   notFound: {
@@ -627,6 +651,7 @@ function rowToHomepage(row: any): HomepageContent {
       tower: { ...DEFAULT_SECTIONS.tower, ...sectionsRaw.tower },
       practical: { ...DEFAULT_SECTIONS.practical, ...sectionsRaw.practical },
       price: { ...DEFAULT_SECTIONS.price, ...sectionsRaw.price },
+      ctaBanner: { ...DEFAULT_SECTIONS.ctaBanner, ...sectionsRaw.ctaBanner },
       faq: { ...DEFAULT_SECTIONS.faq, ...sectionsRaw.faq },
       notFound: { ...DEFAULT_SECTIONS.notFound, ...sectionsRaw.notFound },
       blogTeaser: { ...DEFAULT_SECTIONS.blogTeaser, ...sectionsRaw.blogTeaser },

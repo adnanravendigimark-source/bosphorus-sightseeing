@@ -7,31 +7,42 @@ export default async function PracticalInfo() {
   const s = sections.practical;
 
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-3">
-        <div>
-          <h3 className="font-display text-lg font-semibold text-stone-900">{s.hoursHeading}</h3>
-          <table className="mt-4 w-full text-sm">
+    <section id="practical" className="bg-stone-50 py-20 sm:py-24 border-b border-stone-200">
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-8 lg:grid-cols-3">
+        <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-100 text-bosphorus-navy font-bold text-lg mb-4">
+            ⏱
+          </div>
+          <h3 className="font-display text-lg sm:text-xl font-bold text-bosphorus-navy">{s.hoursHeading}</h3>
+          <table className="mt-4 w-full text-xs sm:text-sm">
             <tbody>
               {s.hours.map((row, i) => (
-                <tr key={row.range + i} className="border-b border-stone-900/5">
-                  <td className="py-2 text-stone-900/70">{row.range}</td>
-                  <td className="py-2 text-right font-medium text-stone-900">{row.time}</td>
+                <tr key={row.range + i} className="border-b border-stone-100 last:border-0">
+                  <td className="py-2.5 pr-3 text-stone-900/80">{row.range}</td>
+                  <td className="py-2.5 text-right font-semibold text-bosphorus-navy">{row.time}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p className="mt-2 text-xs text-stone-900/50">{s.hoursNote}</p>
+          {s.hoursNote && <p className="mt-3 text-xs text-stone-900/60">{s.hoursNote}</p>}
         </div>
-        <div>
-          <h3 className="font-display text-lg font-semibold text-stone-900">{s.addressHeading}</h3>
-          <p className="mt-4 whitespace-pre-line text-sm text-stone-900/70">{s.address}</p>
-          <p className="mt-3 text-xs text-stone-900/50">{s.metro}</p>
+
+        <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-100 text-bosphorus-navy font-bold text-lg mb-4">
+            📍
+          </div>
+          <h3 className="font-display text-lg sm:text-xl font-bold text-bosphorus-navy">{s.addressHeading}</h3>
+          <p className="mt-4 whitespace-pre-line text-xs sm:text-sm leading-relaxed text-stone-900/80">{s.address}</p>
+          {s.metro && <p className="mt-3 text-xs font-semibold text-bosphorus-gold">{s.metro}</p>}
         </div>
-        <div>
-          <h3 className="font-display text-lg font-semibold text-stone-900">{s.bestTimeHeading}</h3>
-          <p
-            className="rich-content mt-4 text-sm text-stone-900/70"
+
+        <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-bosphorus-gold font-bold text-lg mb-4">
+            💡
+          </div>
+          <h3 className="font-display text-lg sm:text-xl font-bold text-bosphorus-navy">{s.bestTimeHeading}</h3>
+          <div
+            className="rich-content mt-4 text-xs sm:text-sm text-stone-900/80 leading-relaxed"
             dangerouslySetInnerHTML={{ __html: s.bestTimeBody }}
           />
         </div>
