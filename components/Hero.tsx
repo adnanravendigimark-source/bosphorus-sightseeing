@@ -1,81 +1,66 @@
 import SafeImage from "./SafeImage";
 import { getHomepageContent } from "@/lib/homepage";
 
-// Hero section matching the Bosphorus Boat Cruise reference design:
-// Full-bleed scenic photo with left-weighted contrast overlay,
-// Display title + cursive golden accent subtitle ("Day & Afternoon Tickets"),
-// Dual tickets CTA buttons, and interactive water hotspot dot.
 export default async function Hero() {
   const content = await getHomepageContent();
 
   return (
     <section
       id="top"
-      className="relative flex min-h-[calc(100dvh-5rem)] flex-col justify-center overflow-hidden bg-[#081827] text-white"
+      className="relative w-full min-h-[calc(100vh-5rem)] min-h-[calc(100dvh-5rem)] flex flex-col justify-center bg-white overflow-hidden"
     >
-      {/* Full-bleed photo background */}
-      <div className="absolute inset-0 z-0">
+      {/* Full-bleed panoramic background photo */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <SafeImage
-          src="/hero-cruise.jpg"
-          alt={content.heroImageAlt || "Bosphorus sightseeing boat cruise in Istanbul"}
+          src={content.heroImage}
+          alt={content.heroImageAlt || "Bosphorus sightseeing cruise in Istanbul"}
           fill
           priority
+          quality={75}
           sizes="100vw"
-          className="object-cover object-[center_right] sm:object-center"
+          className="object-cover object-[80%_center] md:object-[78%_center] lg:object-right"
         />
-        {/* Left-to-right gradient overlay for text readability while keeping the boat and mosque clearly visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#081827]/90 via-[#081827]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#081827] via-transparent to-black/25" />
+        {/* Atmospheric gradient overlay ensuring clear text readability on mobile and desktop */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/85 via-50% to-white/30 sm:bg-gradient-to-r sm:from-white/95 sm:via-white/75 sm:via-45% md:from-white/90 md:via-white/50 md:via-50% lg:via-52% md:to-transparent" />
       </div>
 
-      {/* Pulsing Hotspot Marker in Bosphorus water (matching design visual) */}
-      <div className="pointer-events-none absolute bottom-[28%] left-[38%] z-10 hidden lg:block" aria-hidden="true">
-        <span className="relative flex h-5 w-5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75" />
-          <span className="relative inline-flex h-5 w-5 rounded-full border-2 border-white bg-sky-500 shadow-md shadow-sky-500/50" />
-        </span>
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="max-w-2xl">
+      {/* Hero content layer (positioned comfortably below the header) */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-8 pt-16 sm:pt-24 lg:pt-32 pb-16 sm:pb-24 lg:pb-32 flex-1 flex flex-col justify-center">
+        <div className="max-w-xl lg:max-w-2xl mt-4 sm:mt-6 lg:mt-8">
           {/* Eyebrow */}
-          <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] text-[#E5A83B]">
-            {content.heroBadge || "BOSPHORUS SIGHTSEEING CRUISE TOUR"}
-          </span>
+          <p className="text-xs sm:text-[13px] font-bold tracking-[0.18em] uppercase text-bosphorus-gold">
+            {content.heroBadge}
+          </p>
 
-          {/* Main Heading */}
-          <h1 className="mt-3 font-display text-4xl sm:text-5xl lg:text-[4.2rem] font-bold leading-[1.08] tracking-tight text-white drop-shadow">
-            Bosphorus <br />
-            Sightseeing Cruise Tour
+          {/* Main headline */}
+          <h1 className="mt-3 font-display text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.12] tracking-tight text-bosphorus-navy">
+            {content.heroHeading}
           </h1>
 
-          {/* Cursive / Calligraphy Script Subtitle */}
-          <p className="mt-1 font-script text-4xl sm:text-5xl lg:text-6xl font-normal text-[#E5A83B] drop-shadow leading-none">
-            Day &amp; Afternoon Tickets
-          </p>
+          {/* Gold accent line */}
+          <div className="mt-3.5 mb-5 h-[2.5px] w-12 rounded-full bg-bosphorus-gold" />
 
-          {/* Description */}
-          <p className="mt-6 max-w-xl text-base sm:text-lg font-normal leading-relaxed text-white/95 drop-shadow">
-            {content.heroSubheading
-              ? content.heroSubheading.replace(/<[^>]+>/g, " ")
-              : "Sail between Europe and Asia and discover Istanbul's most stunning views, historic landmarks and unforgettable moments."}
-          </p>
+          {/* Subtitle */}
+          <div
+            className="rich-content text-sm sm:text-base text-bosphorus-charcoal leading-relaxed max-w-lg font-normal"
+            dangerouslySetInnerHTML={{ __html: content.heroSubheading }}
+          />
 
-          {/* Dual Action Buttons */}
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          {/* Action buttons */}
+          <div className="mt-7 flex flex-wrap items-center gap-3.5 sm:gap-4">
             <a
               href={content.heroCtaPrimaryHref || "#tours"}
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#E5A83B] px-6 py-3.5 text-sm sm:text-base font-bold text-[#081827] shadow-lg shadow-[#E5A83B]/20 transition-all duration-300 hover:bg-[#D99B26] hover:scale-[1.02]"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-bosphorus-navy px-6 py-3.5 text-xs sm:text-sm font-semibold text-white shadow-sm transition-all hover:bg-bosphorus-navy/90 hover:shadow-md hover:-translate-y-0.5"
             >
-              <span>{content.heroCtaPrimaryText || "Day Cruise Tickets"}</span>
+              <span>{content.heroCtaPrimaryText}</span>
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
 
             <a
               href={content.heroCtaSecondaryHref || "#tours"}
-              className="group inline-flex items-center justify-center gap-2 rounded-md border border-[#E5A83B] bg-[#081827]/60 px-6 py-3.5 text-sm sm:text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-[#081827]/90 hover:scale-[1.02]"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg border border-bosphorus-charcoal/30 bg-white/40 md:bg-transparent px-6 py-3.5 text-xs sm:text-sm font-semibold text-bosphorus-charcoal transition-all hover:bg-white/80 hover:border-bosphorus-charcoal/50 hover:-translate-y-0.5"
             >
-              <span>{content.heroCtaSecondaryText || "Afternoon Cruise Tickets"}</span>
+              <span>{content.heroCtaSecondaryText}</span>
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
@@ -84,4 +69,3 @@ export default async function Hero() {
     </section>
   );
 }
-

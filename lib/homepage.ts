@@ -288,10 +288,7 @@ export const DEFAULT_HEADER: HeaderContent = {
   bookNowText: "Book Tickets",
   navLinks: [
     { label: "Home", href: "/" },
-    { label: "Day Cruises", href: "/#tours" },
-    { label: "Afternoon Cruises", href: "/#tours" },
-    { label: "Private Cruises", href: "/#tours" },
-    { label: "About Bosphorus", href: "/about" },
+    { label: "About Us", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
