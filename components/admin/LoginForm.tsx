@@ -78,25 +78,31 @@ export default function LoginForm() {
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
       )}
       <div>
-        <label className="mb-1 block text-sm font-medium text-stone-700">Email</label>
+        <label htmlFor="admin-email" className="mb-1 block text-sm font-medium text-stone-700">Email</label>
         <input
+          id="admin-email"
+          name="email"
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full rounded-lg border border-stone-300 px-3 py-2.5 text-sm focus:border-bosphorus-navy focus:outline-none focus:ring-1 focus:ring-bosphorus-navy"
+          autoComplete="username"
           autoFocus
         />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-stone-700">Password</label>
+        <label htmlFor="admin-password" className="mb-1 block text-sm font-medium text-stone-700">Password</label>
         <input
+          id="admin-password"
+          name="password"
           type="password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full rounded-lg border border-stone-300 px-3 py-2.5 text-sm focus:border-bosphorus-navy focus:outline-none focus:ring-1 focus:ring-bosphorus-navy"
           placeholder="••••••••"
+          autoComplete="current-password"
         />
       </div>
       {TURNSTILE_SITE_KEY && (
