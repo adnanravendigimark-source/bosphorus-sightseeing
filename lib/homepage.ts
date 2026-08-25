@@ -581,7 +581,7 @@ const DEFAULT_HOMEPAGE_CONTENT: HomepageContent = {
   theme: DEFAULT_THEME,
   metaTitle: "",
   metaDescription: "",
-  focusKeyword: "",
+  focusKeyword: "Bosphorus Sightseeing Cruise Tour",
   noIndex: false,
   noFollow: false,
   canonicalUrl: "",
