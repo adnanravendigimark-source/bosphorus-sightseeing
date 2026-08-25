@@ -35,7 +35,7 @@ export default function BlogIndexContainer({
     <div id="articles-section" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10">
       <div>
         <div className="mb-6">
-          <h2 className="font-display text-2xl font-bold text-bosphorus-navy sm:text-3xl">Latest Guides</h2>
+          <h2 className="font-serif text-2xl font-bold text-bosphorus-navy sm:text-3xl">Latest Guides</h2>
           <p className="mt-1.5 text-xs text-bosphorus-charcoal/80 sm:text-sm">
             Expert tips, travel guides and everything you need to know about Bosphorus cruises in Istanbul.
           </p>

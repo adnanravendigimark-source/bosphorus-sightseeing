@@ -77,7 +77,7 @@ export default async function BlogIndexPage() {
                 {s.eyebrow}
               </span>
 
-              <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-bosphorus-navy sm:text-4xl lg:text-5xl">
+              <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-bosphorus-navy sm:text-4xl lg:text-5xl">
                 {s.heading}
               </h1>
 

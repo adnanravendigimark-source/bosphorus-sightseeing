@@ -21,7 +21,7 @@ export default async function BlogSection() {
             <p className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-bosphorus-gold">
               {s.eyebrow}
             </p>
-            <h2 className="mt-2.5 font-display text-2xl sm:text-3xl lg:text-[2.15rem] font-bold tracking-tight text-bosphorus-navy">
+            <h2 className="mt-2.5 font-serif text-2xl sm:text-3xl lg:text-[2.15rem] font-bold tracking-tight text-bosphorus-navy">
               {s.heading}
             </h2>
             <p className="mt-2 max-w-xl text-xs sm:text-[13.5px] text-stone-900/80 leading-relaxed">
@@ -60,7 +60,7 @@ export default async function BlogSection() {
                   </span>
                   {post.readTime && <span className="text-stone-900/60 text-[11px] font-medium">{post.readTime}</span>}
                 </div>
-                <h3 className="mt-2.5 font-display text-[15px] sm:text-base font-bold leading-snug text-bosphorus-navy group-hover:text-bosphorus-gold transition-colors line-clamp-2">
+                <h3 className="mt-2.5 font-serif text-[15px] sm:text-base font-bold leading-snug text-bosphorus-navy group-hover:text-bosphorus-gold transition-colors line-clamp-2">
                   <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>
                 {post.excerpt && (

@@ -57,7 +57,7 @@ export default function BlogIndexSidebar({
       {/* Categories Widget */}
       {categories.length > 0 && (
         <div className="rounded-2xl border border-bosphorus-sand/60 bg-white p-5 shadow-sm">
-          <p className="font-display text-base font-bold text-bosphorus-navy">Categories</p>
+          <p className="font-serif text-base font-bold text-bosphorus-navy">Categories</p>
           <div className="mt-3.5 space-y-1">
             {categories.map((cat) => {
               const isSelected = selectedCategory?.toLowerCase() === cat.name.toLowerCase();
@@ -86,7 +86,7 @@ export default function BlogIndexSidebar({
       {/* Popular Articles Widget */}
       {popular.length > 0 && (
         <div className="rounded-2xl border border-bosphorus-sand/60 bg-white p-5 shadow-sm">
-          <p className="font-display text-base font-bold text-bosphorus-navy">Popular Guides</p>
+          <p className="font-serif text-base font-bold text-bosphorus-navy">Popular Guides</p>
           <div className="mt-4 space-y-3.5">
             {popular.map((post) => (
               <Link
@@ -124,7 +124,7 @@ export default function BlogIndexSidebar({
         <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-bosphorus-gold border border-white/15 shadow-sm">
           <TicketIcon className="h-5 w-5" />
         </div>
-        <p className="mt-3.5 font-display text-base font-bold text-white">{ctaHeading}</p>
+        <p className="mt-3.5 font-serif text-base font-bold text-white">{ctaHeading}</p>
         <p className="mt-1.5 text-xs leading-relaxed text-white/80">{ctaBody}</p>
         <a
           href="/#tours"

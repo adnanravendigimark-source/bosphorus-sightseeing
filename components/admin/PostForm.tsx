@@ -471,9 +471,7 @@ export default function PostForm({
             </SectionCard>
           </div>
         )}
-      </div>
 
-      <div className="mx-auto max-w-4xl">
         <SaveBar
           saving={saving}
           disabled={!dirty}

@@ -115,7 +115,7 @@ export default async function Post() {
               {post.category}
             </span>
 
-            <h1 className="mt-3.5 font-display text-3xl font-bold leading-tight text-bosphorus-navy sm:text-4xl lg:text-5xl">
+            <h1 className="mt-3.5 font-serif text-3xl font-bold leading-tight text-bosphorus-navy sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
 
@@ -167,7 +167,7 @@ export default async function Post() {
                     <TicketIcon className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="font-display text-base font-bold text-white">{post.ctaHeading}</p>
+                    <p className="font-serif text-base font-bold text-white">{post.ctaHeading}</p>
                     <p className="mt-0.5 text-xs text-white/80">{post.ctaBody}</p>
                   </div>
                 </div>

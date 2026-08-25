@@ -77,7 +77,7 @@ export default function BlogSidebar({
       {/* Popular Articles */}
       {popular.length > 0 && (
         <div className="rounded-2xl border border-bosphorus-sand/60 bg-white p-5 shadow-sm">
-          <p className="font-display text-xs font-bold uppercase tracking-wider text-bosphorus-navy">
+          <p className="font-serif text-xs font-bold uppercase tracking-wider text-bosphorus-navy">
             {relatedHeading}
           </p>
           <div className="mt-4 space-y-3.5">
@@ -122,7 +122,7 @@ export default function BlogSidebar({
         <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-bosphorus-gold border border-white/15 shadow-sm">
           <TicketIcon className="h-5 w-5" />
         </div>
-        <p className="mt-3.5 font-display text-base font-bold text-white">
+        <p className="mt-3.5 font-serif text-base font-bold text-white">
           Compare Bosphorus Cruises &amp; Tickets
         </p>
         <p className="mt-1.5 text-xs leading-relaxed text-white/80">
@@ -138,7 +138,7 @@ export default function BlogSidebar({
 
       {/* Newsletter Card */}
       <div className="rounded-2xl border border-bosphorus-sand/60 bg-white p-5 shadow-sm">
-        <p className="font-display text-xs font-bold uppercase tracking-wider text-bosphorus-navy">
+        <p className="font-serif text-xs font-bold uppercase tracking-wider text-bosphorus-navy">
           Newsletter
         </p>
         <p className="mt-2 text-xs text-bosphorus-charcoal/80 leading-relaxed">

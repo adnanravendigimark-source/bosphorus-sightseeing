@@ -160,7 +160,7 @@ export default function BlogSearchGrid({
                 </div>
 
                 {/* Title */}
-                <h2 className="mt-2.5 line-clamp-2 font-display text-[15px] font-bold leading-snug text-bosphorus-navy transition-colors group-hover:text-bosphorus-gold">
+                <h2 className="mt-2.5 line-clamp-2 font-serif text-[15px] font-bold leading-snug text-bosphorus-navy transition-colors group-hover:text-bosphorus-gold">
                   {post.title}
                 </h2>
 
