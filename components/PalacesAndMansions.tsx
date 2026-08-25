@@ -3,12 +3,12 @@ import { getHomepageContent } from "@/lib/homepage";
 
 // Content editable from /admin/homepage → Content tab (see
 // lib/homepage.ts's TowerSection / DEFAULT_SECTIONS.tower).
-export default async function IlluminationsCruise() {
+export default async function PalacesAndMansions() {
   const { sections } = await getHomepageContent();
   const s = sections.tower;
 
   return (
-    <section id="night-cruise" className="bg-bosphorus-navy/5 py-16">
+    <section id="palaces-mansions" className="bg-bosphorus-navy/5 py-16">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-bosphorus-navy">

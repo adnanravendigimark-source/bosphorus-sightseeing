@@ -31,15 +31,15 @@ export interface AboutPageContent {
 // contact-prompt fields into a single article, in the same order they
 // used to appear on the page.
 const DEFAULT_CONTENT = `<h2>Our Mission</h2>
-<p>We built this site around one belief: a Bosphorus cruise is one of the best, cheapest things you can do in Istanbul — but only if you book the right one. Some operators oversell tiny boats, some "dinner cruises" cut every corner on the food, and prices for the exact same route can vary by 30% depending on where you book.</p>
-<p>We're an independent Bosphorus cruise guide — not an official operator's website. We compare sightseeing cruises, dinner cruises, and evening illuminations cruises from licensed, established Istanbul operators, and point you to the ones worth your time and money.</p>
+<p>We built this site around one belief: a Bosphorus sightseeing cruise is one of the best, cheapest things you can do in Istanbul — but only if you book the right one. Some operators oversell tiny boats, and prices for the exact same route can vary by 30% depending on where you book.</p>
+<p>We're an independent Bosphorus cruise guide — not an official operator's website. We compare day and afternoon sightseeing cruises from licensed, established Istanbul operators, and point you to the ones worth your time and money. We deliberately don't list night or dinner cruises — every tour on this site runs in daylight or the afternoon.</p>
 <h2>How We Choose Our Bosphorus Cruises</h2>
 <p>Every cruise listed on this site is screened against four criteria before it earns a spot.</p>
 <ul>
 <li><strong>Licensed, Established Operators</strong> — Every cruise we list runs with a licensed Istanbul operator, not a reseller adding a markup on top.</li>
 <li><strong>Real Review Volume</strong> — We only list cruises with verifiable review counts and ratings, not cherry-picked testimonials.</li>
 <li><strong>Transparent Pricing</strong> — The price you see on the tour card is the price you pay, no hidden fees added at checkout.</li>
-<li><strong>Honest, Clear Info</strong> — We tell you exactly what's included, and what isn't, like dinner, which is only on the dinner cruise.</li>
+<li><strong>Honest, Clear Info</strong> — We tell you exactly what's included, and what isn't, like lunch, which is only on the lunch cruise.</li>
 </ul>
 <h2>Independent Booking Guide</h2>
 <p>This is an independent affiliate website, not an official Bosphorus cruise operator or a ticketing authority. We don't sell tickets ourselves — every booking on this site goes through GetYourGuide, a trusted third-party booking platform, subject to GetYourGuide's own terms, pricing, and cancellation policies.</p>
@@ -51,15 +51,15 @@ const DEFAULT_CONTENT = `<h2>Our Mission</h2>
 
 const DEFAULT_ABOUT: AboutPageContent = {
   heroEyebrow: "About Us",
-  heroHeading: "Your Independent Guide to Bosphorus Cruise Tickets",
+  heroHeading: "Your Independent Guide to Bosphorus Sightseeing Cruise Tour Tickets",
   heroSubheading:
-    "We help travelers book the right Bosphorus sightseeing or dinner cruise online — curated from licensed Istanbul operators, explained in plain language.",
-  heroImage: "https://images.unsplash.com/photo-1554144573-91d40c39092a?q=80&w=2000&auto=format&fit=crop",
-  heroImageAlt: "Eiffel Tower and the Bosphorus with sightseeing boats in Istanbul",
+    "We help travelers book the right day or afternoon Bosphorus sightseeing cruise online — curated from licensed Istanbul operators, explained in plain language.",
+  heroImage: "https://images.unsplash.com/photo-1759347171702-e9cae049bc01?q=80&w=2000&auto=format&fit=crop",
+  heroImageAlt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
   content: DEFAULT_CONTENT,
-  metaTitle: "About Us | Bosphorus Cruise Tour & Ticket Booking Guide",
+  metaTitle: "About Us | Bosphorus Sightseeing Cruise Tour Booking Guide",
   metaDescription:
-    "Who curates our Bosphorus sightseeing and dinner cruises online, how we pick licensed operators, and why a good cruise beats a rushed one.",
+    "Who curates our Bosphorus day and afternoon sightseeing cruises online, how we pick licensed operators, and why a good cruise beats a rushed one.",
   canonicalUrl: "",
   noIndex: false,
   noFollow: false,

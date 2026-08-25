@@ -14,7 +14,7 @@ export const PARTNER_ID = process.env.GYG_PARTNER_ID || "YOUR_PARTNER_ID";
 function gygLink(path: string, extra = "") {
   const trimmed = (path || "").trim();
   // The admin can paste either just the path segment (the original,
-  // documented way — "paris-l16/tour-name-t12345") OR a complete URL
+  // documented way — "istanbul-l56/tour-name-t12345") OR a complete URL
   // copied straight from GetYourGuide/the partner dashboard. If it's
   // already a full URL, use it exactly as given — don't prefix it with
   // our own base URL. Prefixing unconditionally used to double up into a

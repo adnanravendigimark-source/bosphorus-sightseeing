@@ -44,7 +44,7 @@ const CONTENT_SECTIONS = [
   { id: "sec-highlights", label: "Highlights" },
   { id: "sec-tourgrid", label: "Tour Grid" },
   { id: "sec-why", label: "What You See" },
-  { id: "sec-tower", label: "Illuminations Cruise" },
+  { id: "sec-tower", label: "Waterfront Palaces & Mansions" },
   { id: "sec-practical", label: "Practical Info" },
   { id: "sec-price", label: "Price Comparison" },
   { id: "sec-blogteaser", label: "Blog Teaser" },
@@ -540,7 +540,7 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
 
           <SectionCard
             id="sec-tower"
-            title="Illuminations Cruise section"
+            title="Waterfront Palaces & Mansions section"
             description="Images live on the Images tab."
             open={!!openSections["sec-tower"]}
             onToggle={() => toggleSection("sec-tower")}
@@ -1004,7 +1004,7 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
             />
           </SectionCard>
 
-          <SectionCard title="Illuminations Cruise photos">
+          <SectionCard title="Waterfront Palaces & Mansions photos">
             <RepeatableList<GalleryImage>
               items={content.sections.tower.images}
               onChange={(images) => updateTower({ images })}

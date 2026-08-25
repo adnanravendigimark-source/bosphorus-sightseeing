@@ -15,7 +15,7 @@ import { resolveRobots, resolveCanonical, resolveOg, buildArticleJsonLd } from "
 import { SITE_URL } from "@/lib/site";
 import { extractTableOfContents } from "@/lib/tableOfContents";
 
-const slug = "sightseeing-cruise-vs-dinner-cruise";
+const slug = "short-circle-vs-full-bosphorus-cruise";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: post.metaTitle,
     description: post.metaDescription,
     keywords: [
-      "Bosphorus sightseeing cruise vs dinner cruise",
+      "Short Circle vs full Bosphorus cruise",
       "best Bosphorus cruise to book",
       "Bosphorus cruise comparison",
       "which Bosphorus cruise should I book",
@@ -114,7 +114,7 @@ export default async function Post() {
             <div className="mt-10 rounded-2xl border border-bosphorus-navy/20 bg-bosphorus-navy/5 p-6">
               <p className="text-sm font-semibold text-stone-900">Ready to book?</p>
               <p className="mt-1 text-sm text-stone-900/70">
-                Compare sightseeing and dinner cruise prices side by side.
+                Compare Short Circle and full-day cruise prices side by side.
               </p>
               <Link
                 href="/#prices"

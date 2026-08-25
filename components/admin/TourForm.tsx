@@ -250,7 +250,7 @@ export default function TourForm({
             value={tour.hrefPath}
             onChange={(e) => update("hrefPath", e.target.value)}
             className={inputClass}
-            placeholder="istanbul-l755/tour-name-t12345 — or paste a full https:// URL"
+            placeholder="istanbul-l56/tour-name-t12345 — or paste a full https:// URL"
           />
         </div>
         <div>

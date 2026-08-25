@@ -4,6 +4,7 @@ out
 .env
 .env*.local
 .DS_Store
+*.tsbuildinfo
 
 # Images uploaded through the admin CMS (kept locally, not committed)
 public/uploads

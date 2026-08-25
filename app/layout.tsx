@@ -40,7 +40,7 @@ const displayFont = Cormorant_Garamond({
 // preview image at all, which measurably hurts click-through on shared
 // links — a big deal for a site that depends on organic + social traffic.
 const DEFAULT_OG_IMAGE =
-  "https://images.unsplash.com/photo-1541444318006-609a171ff700?q=80&w=2400&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=2400&auto=format&fit=crop";
 
 // Organization + WebSite structured data — site-wide brand identity signal
 // for Google (E-E-A-T). Deliberately NOT a TouristAttraction/LocalBusiness

@@ -38,7 +38,7 @@ const DEFAULT_CONTACT: ContactPageContent = {
   emailNote: "We typically reply within 1–2 business days.",
   reasonsHeading: "What we can help with",
   reasons: [
-    { icon: "HeadsetIcon", title: "Booking Help", body: "Not sure whether to book the sightseeing cruise, dinner cruise, or evening illuminations cruise? Ask before you book." },
+    { icon: "HeadsetIcon", title: "Booking Help", body: "Not sure whether to book the short circle cruise, full-day cruise, or Two Continents combo? Ask before you book." },
     { icon: "BriefcaseIcon", title: "Partnerships & Affiliates", body: "Cruise operators, DMCs, and affiliate partners — reach out about listing or collaboration opportunities." },
     { icon: "MailIcon", title: "General Questions", body: "Site feedback, content corrections, or anything else about Bosphorus cruises." },
   ],
@@ -48,7 +48,7 @@ const DEFAULT_CONTACT: ContactPageContent = {
   ctaButtonLabel: "Compare Bosphorus Cruises & Tickets",
   metaTitle: "Contact Us | Bosphorus Boat Cruise Tickets",
   metaDescription:
-    "Questions about booking a Bosphorus sightseeing cruise, dinner cruise, or tickets online? Reach out directly — including for partnership and affiliate inquiries.",
+    "Questions about booking a Bosphorus sightseeing cruise tour or tickets online? Reach out directly — including for partnership and affiliate inquiries.",
   canonicalUrl: "",
   noIndex: false,
   noFollow: false,

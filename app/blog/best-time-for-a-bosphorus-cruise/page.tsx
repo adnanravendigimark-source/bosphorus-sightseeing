@@ -15,7 +15,7 @@ import { resolveRobots, resolveCanonical, resolveOg, buildArticleJsonLd } from "
 import { SITE_URL } from "@/lib/site";
 import { extractTableOfContents } from "@/lib/tableOfContents";
 
-const slug = "best-time-for-a-seine-river-cruise";
+const slug = "best-time-for-a-bosphorus-cruise";
 
 // Content lives in /data/posts.json, editable from /admin/posts — render
 // dynamically so edits show up without a rebuild.

@@ -3,7 +3,7 @@
 // What it does:
 //   1. Creates every table the app needs, if they don't already exist.
 //   2. If a table is empty, seeds it from the matching file in /data (the
-//      real Seine River Cruise Tours starter content) so the site has
+//      real Bosphorus Boat Cruise Tickets starter content) so the site has
 //      real tours/posts/FAQs/homepage copy from the first run.
 //
 // How to run it:
@@ -349,7 +349,7 @@ async function addHomepageCmsColumns() {
   await sql`ALTER TABLE homepage ADD COLUMN IF NOT EXISTS meta_title TEXT NOT NULL DEFAULT ''`;
   await sql`ALTER TABLE homepage ADD COLUMN IF NOT EXISTS meta_description TEXT NOT NULL DEFAULT ''`;
   await sql`ALTER TABLE homepage ADD COLUMN IF NOT EXISTS focus_keyword TEXT NOT NULL DEFAULT ''`;
-  // sections_json holds the "What You See", "Illuminations Cruise",
+  // sections_json holds the "What You See", "Waterfront Palaces & Mansions",
   // "Practical Info", and "Price Comparison" sections — grouped into one
   // JSONB column (rather than ~30 separate columns) since they're always
   // saved together from the same admin tab and read together on every
@@ -575,9 +575,9 @@ async function seedSiteSettings() {
     console.log("site_settings: already configured — skipping seed.");
     return;
   }
-  const blogTitle = "Seine River Cruise Guides & Tips | Seine River Cruise Tours";
+  const blogTitle = "Bosphorus Cruise Guides & Tips | Bosphorus Boat Cruise Tickets";
   const blogDescription =
-    "Practical guides for a Seine River cruise in Paris — sightseeing vs. dinner cruise, best time to go, and more.";
+    "Practical guides for a Bosphorus sightseeing cruise tour in Istanbul — short circle vs. full-day cruise, best time to go, and more.";
   await sql`
     INSERT INTO site_settings (id, blog_meta_title, blog_meta_description)
     VALUES (1, ${blogTitle}, ${blogDescription})
@@ -598,35 +598,35 @@ async function seedAboutPage() {
     return;
   }
   const reasons = [
-    { icon: "ShieldCheckIcon", title: "Licensed, Established Operators", body: "Every cruise we list runs with a licensed Paris operator — not a reseller adding a markup on top." },
+    { icon: "ShieldCheckIcon", title: "Licensed, Established Operators", body: "Every cruise we list runs with a licensed Istanbul operator — not a reseller adding a markup on top." },
     { icon: "StarIcon", title: "Real Review Volume", body: "We only list cruises with verifiable review counts and ratings, not cherry-picked testimonials." },
     { icon: "LockIcon", title: "Transparent Pricing", body: "The price you see on the tour card is the price you pay — no hidden fees added at checkout." },
-    { icon: "HeadsetIcon", title: "Honest, Clear Info", body: "We tell you exactly what's included — and what isn't, like dinner, which is only on the dinner cruise." },
+    { icon: "HeadsetIcon", title: "Honest, Clear Info", body: "We tell you exactly what's included — and what isn't, like lunch, which is only on the lunch cruise." },
   ];
   const a = {
     heroEyebrow: "About Us",
-    heroHeading: "Your Independent Guide to Seine River Cruise Tickets",
+    heroHeading: "Your Independent Guide to Bosphorus Sightseeing Cruise Tour Tickets",
     heroSubheading:
-      "We help travelers book the right Seine River sightseeing or dinner cruise online — curated from licensed Paris operators, explained in plain language.",
-    heroImage: "https://images.unsplash.com/photo-1554144573-91d40c39092a?q=80&w=2000&auto=format&fit=crop",
-    heroImageAlt: "Eiffel Tower and the Seine River with sightseeing boats in Paris",
-    introHeading: "Why We Built a Seine River Cruise Guide",
+      "We help travelers book the right day or afternoon Bosphorus sightseeing cruise online — curated from licensed Istanbul operators, explained in plain language.",
+    heroImage: "https://images.unsplash.com/photo-1759347171702-e9cae049bc01?q=80&w=2000&auto=format&fit=crop",
+    heroImageAlt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
+    introHeading: "Why We Built a Bosphorus Sightseeing Cruise Guide",
     introParagraph1:
-      "We built this site around one belief: a Seine River cruise is one of the best, cheapest things you can do in Paris — but only if you book the right one. Some operators oversell tiny boats, some \"dinner cruises\" cut every corner on the food, and prices for the exact same route can vary by 30% depending on where you book.",
+      "We built this site around one belief: a Bosphorus sightseeing cruise is one of the best, cheapest things you can do in Istanbul — but only if you book the right one. Some operators oversell tiny boats, and prices for the exact same route can vary by 30% depending on where you book.",
     introParagraph2:
-      "We're an independent Seine river cruise guide — not an official operator's website. We compare sightseeing cruises, dinner cruises, and evening illuminations cruises from licensed, established Paris operators, currently via GetYourGuide, and point you to the ones worth your time and money.",
-    introImage: "https://images.unsplash.com/photo-1739604977885-545151bef26b?q=80&w=1000&auto=format&fit=crop",
-    introImageAlt: "A river cruise boat gliding past illuminated buildings on the Seine at night",
-    reasonsHeading: "How We Pick Our Seine River Cruises",
+      "We're an independent Bosphorus cruise guide — not an official operator's website. We compare day and afternoon sightseeing cruises from licensed, established Istanbul operators, currently via GetYourGuide, and point you to the ones worth your time and money. We deliberately don't list night or dinner cruises.",
+    introImage: "https://images.unsplash.com/photo-1624187043891-33189b8390e1?q=80&w=1000&auto=format&fit=crop",
+    introImageAlt: "Dolmabahce Palace on the Bosphorus shoreline in Istanbul during the day",
+    reasonsHeading: "How We Pick Our Bosphorus Cruises",
     reasonsSubheading: "Every cruise listed on this site is screened against four criteria before it earns a spot.",
     disclosureHeading: "A Note on How We Earn",
     disclosureBody:
-      "When you book a Seine River cruise through a link on this site, we earn a small commission from the operator at no extra cost to you. This is how we keep the site free and independently written — it doesn't affect which cruises we recommend or how we rank them.",
-    ctaText: "Ready to book your Seine River cruise?",
-    ctaButtonLabel: "Compare Seine River Cruises",
-    metaTitle: "About Us | Seine River Cruise Tour & Ticket Booking Guide",
+      "When you book a Bosphorus cruise through a link on this site, we earn a small commission from the operator at no extra cost to you. This is how we keep the site free and independently written — it doesn't affect which cruises we recommend or how we rank them.",
+    ctaText: "Ready to book your Bosphorus cruise?",
+    ctaButtonLabel: "Compare Bosphorus Cruises",
+    metaTitle: "About Us | Bosphorus Sightseeing Cruise Tour Booking Guide",
     metaDescription:
-      "Who curates our Seine River sightseeing and dinner cruises online, how we pick licensed operators, and why a good cruise beats a rushed one.",
+      "Who curates our Bosphorus day and afternoon sightseeing cruises online, how we pick licensed operators, and why a good cruise beats a rushed one.",
   };
   await sql`
     INSERT INTO about_page (
@@ -654,25 +654,25 @@ async function seedContactPage() {
     return;
   }
   const reasons = [
-    { icon: "HeadsetIcon", title: "Booking Help", body: "Not sure whether to book the sightseeing cruise, dinner cruise, or evening illuminations cruise? Ask before you book." },
+    { icon: "HeadsetIcon", title: "Booking Help", body: "Not sure whether to book the short circle cruise, full-day cruise, or Two Continents combo? Ask before you book." },
     { icon: "BriefcaseIcon", title: "Partnerships & Affiliates", body: "Cruise operators, DMCs, and affiliate partners — reach out about listing or collaboration opportunities." },
-    { icon: "MailIcon", title: "General Questions", body: "Site feedback, content corrections, or anything else about Seine River cruises." },
+    { icon: "MailIcon", title: "General Questions", body: "Site feedback, content corrections, or anything else about Bosphorus cruises." },
   ];
   const c = {
     heroEyebrow: "Contact",
     heroHeading: "Get in Touch",
     heroSubheading:
-      "Questions about a Seine River cruise or ticket — or a partnership inquiry? Reach out directly by email.",
+      "Questions about a Bosphorus cruise or ticket — or a partnership inquiry? Reach out directly by email.",
     email: "livetravelpartner@gmail.com",
     emailNote: "We typically reply within 1–2 business days.",
     reasonsHeading: "What we can help with",
     footerNote:
       "Already have a booking? Contact the cruise operator directly via your confirmation email — they handle changes and refunds faster than we can.",
     ctaHeading: "Not booked yet?",
-    ctaButtonLabel: "Compare Seine River Cruises & Tickets",
-    metaTitle: "Contact Us | Seine River Cruise Tours",
+    ctaButtonLabel: "Compare Bosphorus Cruises & Tickets",
+    metaTitle: "Contact Us | Bosphorus Boat Cruise Tickets",
     metaDescription:
-      "Questions about booking a Seine River sightseeing cruise, dinner cruise, or tickets online? Reach out directly — including for partnership and affiliate inquiries.",
+      "Questions about booking a Bosphorus sightseeing cruise tour or tickets online? Reach out directly — including for partnership and affiliate inquiries.",
   };
   await sql`
     INSERT INTO contact_page (

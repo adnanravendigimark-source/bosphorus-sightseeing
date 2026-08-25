@@ -15,7 +15,7 @@ import { resolveRobots, resolveCanonical, resolveOg, buildArticleJsonLd } from "
 import { SITE_URL } from "@/lib/site";
 import { extractTableOfContents } from "@/lib/tableOfContents";
 
-const slug = "is-the-seine-dinner-cruise-worth-it";
+const slug = "is-the-two-continents-tour-worth-it";
 
 export const dynamic = "force-dynamic";
 
@@ -30,10 +30,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: post.metaTitle,
     description: post.metaDescription,
     keywords: [
-      "is the Bosphorus dinner cruise worth it",
-      "Bosphorus dinner cruise review",
-      "Bateaux Istanbuliens dinner cruise",
-      "Istanbul dinner cruise worth it",
+      "is the Two Continents tour worth it",
+      "Bosphorus cruise Two Continents review",
+      "Bosphorus cruise combo tour Istanbul",
+      "Two Continents afternoon tour Istanbul",
     ],
     alternates: { canonical: resolveCanonical(`/blog/${slug}`, post.canonicalUrl) },
     robots: resolveRobots(post.noIndex, post.noFollow),
@@ -112,15 +112,15 @@ export default async function Post() {
             />
 
             <div className="mt-10 rounded-2xl border border-bosphorus-navy/20 bg-bosphorus-navy/5 p-6">
-              <p className="text-sm font-semibold text-stone-900">Want the dinner cruise?</p>
+              <p className="text-sm font-semibold text-stone-900">Want the Two Continents tour?</p>
               <p className="mt-1 text-sm text-stone-900/70">
-                Compare early and late seatings, and see what each menu includes.
+                See what's included and check today's departure times.
               </p>
               <Link
                 href="/#tours"
                 className="mt-4 inline-flex rounded-full bg-bosphorus-gold px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-bosphorus-gold/90"
               >
-                See the Dinner Cruise
+                See the Two Continents Tour
               </Link>
             </div>
           </div>

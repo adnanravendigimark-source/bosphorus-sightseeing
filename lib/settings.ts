@@ -19,7 +19,7 @@ export interface BlogSeoSettings {
 const DEFAULT_SETTINGS: BlogSeoSettings = {
   metaTitle: "Bosphorus Cruise Guides & Tips | Bosphorus Boat Cruise Tickets",
   metaDescription:
-    "Practical guides for a Bosphorus cruise in Istanbul — sightseeing vs. dinner cruise, best time to go, and more.",
+    "Practical guides for a Bosphorus sightseeing cruise in Istanbul — Short Circle vs. full-day cruise, best time to go, and more.",
   canonicalUrl: "",
   noIndex: false,
   noFollow: false,

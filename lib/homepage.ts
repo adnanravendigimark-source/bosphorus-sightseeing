@@ -70,7 +70,7 @@ export interface HighlightsSection {
   cards: HighlightCard[];
 }
 
-// "Illuminations Cruise" (evening cruise with music) section.
+// "Waterfront Palaces & Mansions" (daytime-only) section.
 export interface TowerSection {
   eyebrow: string;
   heading: string;
@@ -241,8 +241,8 @@ export interface HomepageContent {
   featuredBadgeLabel: string;
   featuredUrgencyText: string;
   featuredReasons: string[];
-  // Everything below the hero — What You See, Illuminations Cruise,
-  // Practical Info, and the Price Comparison intro.
+  // Everything below the hero — What You See, Waterfront Palaces &
+  // Mansions, Practical Info, and the Price Comparison intro.
   sections: HomepageSections;
   // Site-wide navbar + footer (see interfaces above).
   header: HeaderContent;
@@ -274,7 +274,7 @@ export interface HomepageContent {
 
 // Every default below is a byte-for-byte transcription of the copy that
 // used to be hardcoded directly in Header.tsx / Footer.tsx / Hero.tsx /
-// WhatYouSee.tsx / IlluminationsCruise.tsx / PracticalInfo.tsx /
+// WhatYouSee.tsx / PalacesAndMansions.tsx / PracticalInfo.tsx /
 // PriceComparison.tsx — moving it here and having each component render
 // whatever's in the (possibly-blank) database column, falling back to
 // this, means the live site looks 100% identical until someone actually
@@ -283,7 +283,7 @@ export const DEFAULT_HEADER: HeaderContent = {
   logoImage: "",
   logoAlt: "Bosphorus Boat Cruise Tickets",
   logoLine1: "Bosphorus",
-  logoLine2: "Cruise Tours",
+  logoLine2: "Boat Cruise",
   homeLabel: "Home",
   bookNowText: "Book Now",
   navLinks: [
@@ -298,13 +298,13 @@ export const DEFAULT_HEADER: HeaderContent = {
 
 export const DEFAULT_FOOTER: FooterContent = {
   tagline:
-    "<strong>Independent booking guide.</strong> Not affiliated with any Bosphorus cruise operator — we curate sightseeing and dinner cruises from licensed operators and earn a commission on bookings made through our links, at no extra cost to you.",
+    "<strong>Independent booking guide.</strong> Not affiliated with any Bosphorus cruise operator — we curate day and afternoon sightseeing cruises from licensed operators and earn a commission on bookings made through our links, at no extra cost to you.",
   columns: [
     {
       title: "Explore",
       links: [
-        { label: "River Cruises", href: "/#tours" },
-        { label: "Night Cruise", href: "/#night-cruise" },
+        { label: "Bosphorus Cruises", href: "/#tours" },
+        { label: "Waterfront Palaces", href: "/#palaces-mansions" },
         { label: "Cruise Prices", href: "/#prices" },
         { label: "FAQ", href: "/#faq" },
       ],
@@ -320,165 +320,165 @@ export const DEFAULT_FOOTER: FooterContent = {
     },
   ],
   addressHeading: "Main Boarding Point",
-  addressLine1: "Port de la Bourdonnais",
-  addressLine2: "75007 Istanbul, Turkey",
+  addressLine1: "Eminönü Pier",
+  addressLine2: "Fatih, Istanbul, Turkey",
   copyrightText:
     "Bosphorus Boat Cruise Tickets. All prices shown in EUR and subject to change by the cruise operator.",
 };
 
 export const DEFAULT_THEME: ThemeColors = {
-  primary: "#86198f",   // Istanbulian Velvet Plum
-  secondary: "#f59e0b", // Radiant Turkish Amber
-  dark: "#1e0524",      // Deep Istanbulian Midnight Plum
-  accent: "#fbbf24",    // Luminous Warm Gold
+  primary: "#D9A441",   // Bosphorus Gold
+  secondary: "#082B4C", // Bosphorus Navy
+  dark: "#252A2D",      // Charcoal
+  accent: "#E0B669",    // Luminous Bosphorus Gold
 };
 
 export const DEFAULT_GALLERY: GalleryImage[] = [
   {
-    src: "https://images.unsplash.com/photo-1554144573-91d40c39092a?q=80&w=900&auto=format&fit=crop",
-    alt: "The Eiffel Tower and Pont d'Iéna bridge above the Bosphorus",
+    src: "https://images.unsplash.com/photo-1759347171702-e9cae049bc01?q=80&w=900&auto=format&fit=crop",
+    alt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
     label: "The Cruise",
   },
   {
-    src: "https://images.unsplash.com/photo-1552585734-b7ae2174b8f9?q=80&w=900&auto=format&fit=crop",
-    alt: "The Louvre Museum along the Bosphorus banks in Istanbul",
-    label: "The Louvre",
+    src: "https://images.unsplash.com/photo-1566051102155-bf0e5ad5a345?q=80&w=900&auto=format&fit=crop",
+    alt: "Dolmabahce Palace on the Bosphorus shoreline in Istanbul",
+    label: "Dolmabahçe Palace",
   },
   {
-    src: "https://images.unsplash.com/photo-1739604977885-545151bef26b?q=80&w=900&auto=format&fit=crop",
-    alt: "A river cruise boat gliding past illuminated buildings on the Bosphorus at night",
-    label: "Evening Cruise",
+    src: "https://images.unsplash.com/photo-1669936066960-6b2d8fb5d4b9?q=80&w=900&auto=format&fit=crop",
+    alt: "A waterfront tower on the Bosphorus strait in Istanbul during the day",
+    label: "Along the Strait",
   },
   {
-    src: "https://images.unsplash.com/photo-1754407190578-21b05b79a920?q=80&w=900&auto=format&fit=crop",
-    alt: "The Bosphorus flowing past Istanbulian buildings and bridges",
-    label: "Riverside Istanbul",
+    src: "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=900&auto=format&fit=crop",
+    alt: "Istanbul skyline with mosques along the Bosphorus strait in daylight",
+    label: "Istanbul Skyline",
   },
 ];
 
 export const DEFAULT_SECTIONS: HomepageSections = {
   tours: {
-    heading: "Bosphorus Cruises & Tickets",
+    heading: "Bosphorus Sightseeing Cruise Tours & Tickets",
     subheading:
-      "Three clear options — a quick sightseeing cruise, a dinner cruise with live music, and a budget-friendly evening cruise. Every departure covers the same iconic stretch of river.",
+      "Four clear options — a quick short circle cruise, a full-day cruise to Anadolu Kavağı, a lunch cruise, and a Two Continents combo. Every departure runs in daylight or the afternoon, never at night.",
   },
   highlights: {
     eyebrow: "Why the Bosphorus",
     heading: "Bosphorus Highlights",
     subheading:
-      "The Bosphorus isn't just a way to get between landmarks — it's a viewpoint on its own. Here's what makes the ride itself worth booking.",
+      "The Bosphorus isn't just a way to get between landmarks — it's a viewpoint on its own. Here's what makes the ride itself worth booking, in daylight.",
     cards: [
       {
         title: "Iconic Waterfront",
-        body: "The Eiffel Tower, Musée d'Orsay, and the Louvre all sit directly on the water — no other viewpoint in Istanbul strings them together in one hour.",
-        icon: "🗼",
+        body: "Dolmabahçe Palace, Ortaköy Mosque, and dozens of wooden yalı mansions all sit directly on the water — no other viewpoint in Istanbul strings them together in one trip.",
+        icon: "🕌",
       },
       {
-        title: "Notre-Dame & Île de la Cité",
-        body: "Every route loops around the island where Istanbul began, passing Notre-Dame Cathedral and the Conciergerie from the river.",
-        icon: "⛪",
+        title: "Two Continents, One Strait",
+        body: "Every route crosses between Europe and Asia — you can watch the shoreline change character from one side of the boat to the other.",
+        icon: "🌉",
       },
       {
         title: "Open-Air Decks",
-        body: "Evening and combo cruises open their upper decks so you can feel the river air and get an unobstructed line of sight for photos.",
+        body: "Every cruise opens its upper deck so you can feel the sea air and get an unobstructed line of sight for photos in full daylight.",
         icon: "🌬️",
       },
       {
-        title: "Evening Glow",
-        body: "After sunset, every bridge and monument is floodlit, and the Eiffel Tower sparkles for five minutes on the hour, every hour.",
-        icon: "✨",
+        title: "Daylight Views",
+        body: "Every departure on this site runs in the morning or afternoon, so you always see the palaces, mosques, and bridges clearly lit — no night or dinner cruises here.",
+        icon: "☀️",
       },
     ],
   },
   why: {
-    heading: "What You Actually See on a Bosphorus Cruise",
+    heading: "What You Actually See on a Bosphorus Sightseeing Cruise",
     intro:
-      "One hour, one loop, and more of Istanbul's skyline than you could comfortably reach on foot in an afternoon. Here's the route, landmark by landmark.",
+      "Two hours, one loop, and more of Istanbul's skyline than you could comfortably reach on foot in an afternoon. Here's the Short Circle Cruise route, landmark by landmark.",
     timelineHeading: "Sample cruise route",
     timeline: [
-      { time: "0:00", step: "Depart Port de la Bourdonnais, with the Eiffel Tower directly overhead" },
-      { time: "0:08", step: "Pass under Pont Alexandre III — the most ornate, gold-leafed bridge on the river" },
-      { time: "0:18", step: "Musée d'Orsay and the Tuileries Garden slide by on the Right Bank" },
-      { time: "0:28", step: "The Louvre and Pont Neuf — the oldest bridge in Istanbul, despite the name" },
-      { time: "0:38", step: "Île de la Cité and Notre-Dame Cathedral — the turnaround point" },
-      { time: "0:50", step: "Return past the Conciergerie and Istanbul City Hall (Hôtel de Ville)" },
+      { time: "0:00", step: "Depart Eminönü pier, with the Golden Horn and Galata Bridge behind you" },
+      { time: "0:15", step: "Dolmabahçe Palace — the Ottoman Empire's last imperial palace, right on the water" },
+      { time: "0:30", step: "Ortaköy Mosque, framed under the first Bosphorus Bridge" },
+      { time: "0:50", step: "Wooden yalı mansions and waterfront villages along the Asian shore" },
+      { time: "1:10", step: "Rumeli Fortress, near the Fatih Sultan Mehmet Bridge — the turnaround point" },
+      { time: "1:40", step: "Return past Beşiktaş and Kabataş, back to Eminönü" },
     ],
     learnHeading: "What you'll notice",
     learn: [
-      "Why the Eiffel Tower sparkles for five minutes every hour after dark",
-      "Why \"Pont Neuf\" (New Bridge) is actually the oldest bridge still standing in Istanbul",
-      "How the banks of the Bosphorus became a UNESCO World Heritage Site",
-      "Which of the 30+ bridges you'll pass under has the best photo angle from the water",
+      "Why the Bosphorus is one of the busiest shipping straits in the world",
+      "How wooden yalı mansions have lined the shore since the Ottoman era",
+      "Which side of the boat has the best photo angle for Ortaköy Mosque and the bridge",
+      "Why the Short Circle Cruise only runs April through October",
     ],
-    note: "Cruises run with multilingual audio commentary (up to 10+ languages), so you always know what you're looking at as it passes. Boats have covered indoor seating, so weather rarely cancels a departure.",
+    note: "Cruises run with multilingual audio commentary, so you always know what you're looking at as it passes. Boats have covered indoor seating, so light rain rarely cancels a departure.",
     extraHeading: "Where you can board",
     extraItems: [
-      { name: "Port de la Bourdonnais", note: "At the foot of the Eiffel Tower — the main dock for most sightseeing and evening cruises" },
-      { name: "Pont de l'Alma", note: "A short walk from the Champs-Élysées, used by several evening and combo departures" },
-      { name: "Pont Neuf", note: "On Île de la Cité, closest if you're starting near Notre-Dame or the Louvre" },
+      { name: "Eminönü Pier", note: "The main departure point for most sightseeing cruises, in the historic peninsula" },
+      { name: "Kabataş Pier", note: "Reachable by the T1 tram and funicular — used by several afternoon departures" },
+      { name: "Beşiktaş Pier", note: "On the European shore, a short walk from Dolmabahçe Palace" },
     ],
-    ctaText: "Convinced? The 1-hour sightseeing cruise starts at €17/person and departs every 30–45 minutes.",
+    ctaText: "Convinced? The Short Circle Sightseeing Cruise starts at €24/person and departs several times a day.",
     ctaButtonText: "Book the Sightseeing Cruise →",
     ctaHref: "#tours",
   },
   tower: {
-    eyebrow: "Evening Cruise with Live Music",
-    heading: "See Istanbul Sparkle After Dark",
+    eyebrow: "Waterfront Palaces & Mansions",
+    heading: "See Istanbul's Ottoman Palaces From the Water — By Day",
     body:
-      "The same one-hour route looks completely different once the sun goes down. Every bridge and monument along the Bosphorus is floodlit at night, the <strong>Eiffel Tower sparkles for five minutes on the hour</strong>, and the evening departure adds live onboard music with open-air deck seating — a slower, more atmospheric ride than the daytime sightseeing cruise, for a similar price.",
+      "The best view of Istanbul's waterfront palaces isn't from the street — it's from the Bosphorus itself, in daylight. <strong>Dolmabahçe Palace</strong>, Çırağan Palace, and dozens of centuries-old wooden yalı mansions sit directly on the water, visible only from a passing boat. The Full-Day Cruise to Anadolu Kavağı and the Two Continents Afternoon Tour both spend the most time along this stretch.",
     bullets: [
-      "Live onboard music and open-air deck access, included in the evening ticket",
-      "Every bridge and monument is floodlit — a completely different atmosphere from the daytime route",
-      "Weekend evening slots book out first, especially in summer",
-      "Best light for photos: the 20 minutes right after sunset, before it's fully dark",
+      "Dolmabahçe Palace and Çırağan Palace are both visible only from the water side, not the road",
+      "Wooden yalı mansions along the Asian shore date back to the Ottoman era",
+      "Morning departures get the clearest light for photos of the waterfront palaces",
+      "Every cruise on this site runs in daylight or the afternoon — no night departures",
     ],
-    ctaButtonText: "See Evening Cruise with Music",
+    ctaButtonText: "See Full-Day & Combo Cruises",
     ctaHref: "#tours",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1739604977885-545151bef26b?q=80&w=700&auto=format&fit=crop",
-        alt: "A river cruise boat gliding past illuminated buildings on the Bosphorus at night",
-        label: "Evening Cruise",
+        src: "https://images.unsplash.com/photo-1624187043891-33189b8390e1?q=80&w=700&auto=format&fit=crop",
+        alt: "Dolmabahce Palace on the Bosphorus shoreline in Istanbul during the day",
+        label: "Dolmabahçe Palace",
       },
       {
-        src: "https://images.unsplash.com/photo-1760281853031-7d82263729b6?q=80&w=700&auto=format&fit=crop",
-        alt: "The Eiffel Tower glowing above the Bosphorus at golden hour",
-        label: "Eiffel Tower at Dusk",
+        src: "https://images.unsplash.com/photo-1669936066960-6b2d8fb5d4b9?q=80&w=700&auto=format&fit=crop",
+        alt: "A waterfront tower on the Bosphorus strait in Istanbul during the day",
+        label: "Along the Strait",
       },
       {
-        src: "https://images.unsplash.com/photo-1754407190578-21b05b79a920?q=80&w=700&auto=format&fit=crop",
-        alt: "The Bosphorus flowing past Istanbulian buildings and bridges",
-        label: "Along the River",
+        src: "https://images.unsplash.com/photo-1759347171702-e9cae049bc01?q=80&w=700&auto=format&fit=crop",
+        alt: "Ortakoy Mosque on the Bosphorus strait in Istanbul during the day",
+        label: "Ortaköy Mosque",
       },
       {
-        src: "https://images.unsplash.com/photo-1552585734-b7ae2174b8f9?q=80&w=700&auto=format&fit=crop",
-        alt: "The Louvre Museum along the Bosphorus banks in Istanbul",
-        label: "City Lights",
+        src: "https://images.unsplash.com/photo-1566051102155-bf0e5ad5a345?q=80&w=700&auto=format&fit=crop",
+        alt: "Dolmabahce Palace along the Bosphorus in Istanbul in daylight",
+        label: "The Waterfront",
       },
     ],
   },
   practical: {
     hoursHeading: "Cruise Schedule (2026)",
     hours: [
-      { range: "November – February", time: "10:15 AM – 10:00 PM" },
-      { range: "March", time: "10:15 AM – 10:30 PM" },
-      { range: "April – September", time: "10:00 AM – 11:00 PM" },
-      { range: "October", time: "10:15 AM – 10:30 PM" },
+      { range: "Short Circle Cruise", time: "9:30 AM – 5:00 PM, departures every 45–60 min (April – October)" },
+      { range: "Full-Day Cruise to Anadolu Kavağı", time: "10:30 AM departure, approx. 4:30 PM return, year-round" },
+      { range: "Lunch Cruise", time: "12:30 PM – 2:00 PM departures" },
+      { range: "Two Continents Afternoon Tour", time: "1:00 PM – 2:30 PM departures" },
     ],
-    hoursNote: "Departures every 30–45 minutes; exact times vary by operator.",
+    hoursNote: "Exact departure times vary by operator and season — your confirmation email has the exact time.",
     addressHeading: "Boarding Points",
     address:
-      "Port de la Bourdonnais — 75007, at the Eiffel Tower. RER C (Champ de Mars / Tour Eiffel) or Métro 6 (Bir-Hakeim).\nPont de l'Alma — near the Champs-Élysées, used by several evening departures.\nPont Neuf — Île de la Cité, closest to Notre-Dame and the Louvre.",
-    metro: "Arrive 15–20 minutes early — your confirmation email lists the exact dock number.",
+      "Eminönü Pier — Fatih, the main dock for most sightseeing and full-day cruises. Reachable by T1 tram (Eminönü stop).\nKabataş Pier — reachable by T1 tram and the Kabataş–Taksim funicular, used by several afternoon departures.\nBeşiktaş Pier — on the European shore, a short walk from Dolmabahçe Palace.",
+    metro: "Arrive 15–20 minutes early — your confirmation email lists the exact pier and dock number.",
     bestTimeHeading: "Best Time for a Cruise",
     bestTimeBody:
-      "The hour before sunset gets you daylight on the way out and illuminated bridges on the way back. Book weekday mornings for the shortest boarding lines — June through August is peak season.",
+      "Morning departures get the clearest light for photos and the shortest boarding lines — book a 9:30–10:30 AM slot if you can. June through August is peak season, so weekday mornings book out fastest.",
   },
   price: {
     heading: "Compare & Choose Your Cruise",
     subheading:
       "All four options side by side — pick the one that fits your trip, then book straight from the table.",
-    note: "Children under 4 typically ride free; children, students, and family bundles get reduced rates on most cruises — check each ticket's booking page for exact tiers.",
+    note: "Children typically get reduced rates on most cruises — check each ticket's booking page for exact age tiers.",
     itemLabel: "Cruise Type",
     priceLabel: "Price",
     column1Label: "Duration",
@@ -492,7 +492,7 @@ export const DEFAULT_SECTIONS: HomepageSections = {
   notFound: {
     heading: "Looks like this page missed the boat.",
     body: "The page you're looking for doesn't exist or may have moved. Try one of these instead.",
-    primaryButtonText: "Compare River Cruises & Tickets →",
+    primaryButtonText: "Compare Bosphorus Cruises & Tickets →",
     primaryButtonHref: "/#tours",
     secondaryButtonText: "Read the Travel Guide",
     secondaryButtonHref: "/blog",
@@ -501,14 +501,14 @@ export const DEFAULT_SECTIONS: HomepageSections = {
     eyebrow: "From the Blog",
     heading: "Bosphorus Cruise Guides & Tips",
     subheading:
-      "Expert advice, dinner cruise comparisons, and insider tips to help you plan your Istanbul river experience.",
+      "Expert advice on picking the right daytime cruise and insider tips to help you plan your Istanbul trip.",
     viewAllText: "View All Articles",
     readArticleText: "Read Article",
   },
   blogPage: {
-    eyebrow: "River Cruise Blog",
+    eyebrow: "Bosphorus Cruise Blog",
     heading: "Bosphorus Cruise Travel Guide",
-    subheading: "Practical guides to help you plan your visit and pick the right cruise.",
+    subheading: "Practical guides to help you plan your visit and pick the right daytime cruise.",
     emptyStateText: "No articles published yet — check back soon.",
     featuredLinkText: "Read the guide",
     ctaHeading: "Ready to book your Bosphorus cruise?",
@@ -529,26 +529,26 @@ export const DEFAULT_SECTIONS: HomepageSections = {
 // empty string so the hero section never renders broken/blank.
 const DEFAULT_HOMEPAGE_CONTENT: HomepageContent = {
   heroBadge: "⚓ Skip the line · Instant confirmation",
-  heroHeading: "Bosphorus Boat Cruise Tickets — See Istanbul From the Water",
+  heroHeading: "Bosphorus Sightseeing Cruise Tour Tickets — See Istanbul From the Water",
   heroSubheading:
-    "Glide past the Eiffel Tower, Notre-Dame, and the Louvre on a sightseeing or dinner cruise along the Bosphorus. Book online — instant confirmation, free cancellation on most tickets.",
+    "Glide past Dolmabahçe Palace, Ortaköy Mosque, and the Bosphorus Bridge on a day or afternoon sightseeing cruise. Book online — instant confirmation, free cancellation on most tickets. No night or dinner cruises here.",
   heroImage:
-    "https://images.unsplash.com/photo-1774084930616-fce8eba59264?q=80&w=2400&auto=format&fit=crop",
-  heroImageAlt: "The Eiffel Tower and the Bosphorus glowing at sunset in Istanbul",
+    "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=2400&auto=format&fit=crop",
+  heroImageAlt: "Istanbul skyline with mosques along the Bosphorus strait in daylight",
   heroGallery: DEFAULT_GALLERY,
-  heroCtaPrimaryText: "Compare River Cruises",
+  heroCtaPrimaryText: "Compare Bosphorus Cruises",
   heroCtaPrimaryHref: "#tours",
   heroCtaSecondaryText: "See Cruise Prices",
   heroCtaSecondaryHref: "#prices",
-  ratingValue: "4.6 / 5",
-  ratingCount: "42,000+ reviews",
+  ratingValue: "4.4 / 5",
+  ratingCount: "30,000+ reviews",
   showFeaturedTour: true,
-  featuredTourId: "seine-sightseeing-cruise",
+  featuredTourId: "bosphorus-short-circle-sightseeing-cruise",
   featuredBadgeLabel: "Recommended",
   featuredUrgencyText: "Best Price · Limited Availability",
   featuredReasons: [
-    "Our most-booked cruise — 42,000+ reviews, averaging 4.6 stars",
-    "Departs every 30–45 minutes, all day",
+    "Our most-booked cruise — 18,000+ reviews, averaging 4.35 stars",
+    "Departs several times a day, April through October",
     "Free cancellation up to 24 hours before",
   ],
   sections: DEFAULT_SECTIONS,
@@ -782,8 +782,8 @@ export async function saveRecommendedTour(data: {
   `;
 }
 
-// Touches ONLY sections_json — the "What You See" / "Illuminations
-// Cruise" / "Practical Info" / "Price Comparison" content.
+// Touches ONLY sections_json — the "What You See" / "Waterfront Palaces
+// & Mansions" / "Practical Info" / "Price Comparison" content.
 export async function saveHomepageSections(sections: HomepageSections): Promise<void> {
   await sql`
     INSERT INTO homepage (id, sections_json)
