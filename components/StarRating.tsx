@@ -29,8 +29,18 @@ export default function StarRating({
 
   return (
     <div className={`inline-flex items-center gap-1.5 ${className}`}>
-      {/* 5-star row with fractional fill */}
-      <div className="flex items-center gap-0.5" aria-label={`${rating.toFixed(1)} out of ${maxStars} stars`}>
+      {/* 5-star row with fractional fill. role="img" is required here —
+          a bare <div> has an implicit ARIA role of "generic", and the
+          "generic" role explicitly prohibits naming via aria-label per the
+          ARIA spec, so screen readers were meant to ignore this label
+          entirely (Lighthouse: "Elements use prohibited ARIA attributes").
+          role="img" gives the div a role that's allowed to have an
+          accessible name, so "4.8 out of 5 stars" actually gets announced. */}
+      <div
+        className="flex items-center gap-0.5"
+        role="img"
+        aria-label={`${rating.toFixed(1)} out of ${maxStars} stars`}
+      >
         {Array.from({ length: maxStars }).map((_, i) => {
           const fillPercent = Math.min(100, Math.max(0, (rating - i) * 100));
 
