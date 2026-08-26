@@ -244,8 +244,6 @@ export interface HomepageContent {
   heroCtaPrimaryHref: string;
   heroCtaSecondaryText: string;
   heroCtaSecondaryHref: string;
-  ratingValue: string;
-  ratingCount: string;
   // "Featured/Recommended Tour" widget — a compact sticky bar on mobile,
   // a richer showcase card on desktop. Which tour it promotes and its
   // copy are both editable from /admin/recommended.
@@ -539,8 +537,6 @@ const DEFAULT_HOMEPAGE_CONTENT: HomepageContent = {
   heroCtaPrimaryHref: "#tours",
   heroCtaSecondaryText: "Afternoon Cruise Tickets",
   heroCtaSecondaryHref: "#tours",
-  ratingValue: "4.7 / 5",
-  ratingCount: "3,250+ reviews",
   showFeaturedTour: true,
   featuredTourId: "bosphorus-short-circle-sightseeing-cruise",
   featuredBadgeLabel: "Recommended",
@@ -608,8 +604,6 @@ function rowToHomepage(row: any): HomepageContent {
     heroCtaPrimaryHref: row.hero_cta_primary_href || DEFAULT_HOMEPAGE_CONTENT.heroCtaPrimaryHref,
     heroCtaSecondaryText: row.hero_cta_secondary_text || DEFAULT_HOMEPAGE_CONTENT.heroCtaSecondaryText,
     heroCtaSecondaryHref: row.hero_cta_secondary_href || DEFAULT_HOMEPAGE_CONTENT.heroCtaSecondaryHref,
-    ratingValue: row.rating_value || "",
-    ratingCount: row.rating_count || "",
     showFeaturedTour: !!row.show_featured_tour,
     featuredTourId: row.featured_tour_id || "",
     featuredBadgeLabel: row.featured_badge_label || "",
@@ -688,8 +682,6 @@ export async function saveHomepageCopy(data: {
   heroCtaPrimaryHref: string;
   heroCtaSecondaryText: string;
   heroCtaSecondaryHref: string;
-  ratingValue: string;
-  ratingCount: string;
   metaTitle: string;
   metaDescription: string;
   focusKeyword: string;
@@ -703,14 +695,13 @@ export async function saveHomepageCopy(data: {
       id, hero_badge, hero_heading, hero_subheading, hero_image, hero_image_alt,
       hero_cta_primary_text, hero_cta_primary_href,
       hero_cta_secondary_text, hero_cta_secondary_href,
-      rating_value, rating_count, meta_title, meta_description, focus_keyword,
+      meta_title, meta_description, focus_keyword,
       canonical_url, og_title, og_description, og_image
     ) VALUES (
       1, ${data.heroBadge}, ${data.heroHeading}, ${data.heroSubheading}, ${data.heroImage},
       ${data.heroImageAlt},
       ${data.heroCtaPrimaryText || ""}, ${data.heroCtaPrimaryHref || ""},
       ${data.heroCtaSecondaryText || ""}, ${data.heroCtaSecondaryHref || ""},
-      ${data.ratingValue}, ${data.ratingCount},
       ${data.metaTitle || ""}, ${data.metaDescription || ""}, ${data.focusKeyword || ""},
       ${data.canonicalUrl || ""}, ${data.ogTitle || ""}, ${data.ogDescription || ""}, ${data.ogImage || ""}
     )

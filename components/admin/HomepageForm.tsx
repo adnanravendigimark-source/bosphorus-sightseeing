@@ -408,14 +408,6 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
               <RichTextEditor value={content.heroSubheading} onChange={(html) => update("heroSubheading", html)} minHeight="4rem" />
             </Field>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Rating value" hint="e.g. 4.8 / 5">
-                <input value={content.ratingValue} onChange={(e) => update("ratingValue", e.target.value)} className={inputClass} />
-              </Field>
-              <Field label="Rating count label" hint="e.g. 1,200+ reviews">
-                <input value={content.ratingCount} onChange={(e) => update("ratingCount", e.target.value)} className={inputClass} />
-              </Field>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Primary button text">
                 <input value={content.heroCtaPrimaryText} onChange={(e) => update("heroCtaPrimaryText", e.target.value)} className={inputClass} />
               </Field>

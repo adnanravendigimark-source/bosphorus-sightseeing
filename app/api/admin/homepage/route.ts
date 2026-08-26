@@ -52,8 +52,6 @@ export async function PUT(req: Request) {
         heroCtaPrimaryHref: body.heroCtaPrimaryHref || "",
         heroCtaSecondaryText: body.heroCtaSecondaryText || "",
         heroCtaSecondaryHref: body.heroCtaSecondaryHref || "",
-        ratingValue: body.ratingValue,
-        ratingCount: body.ratingCount,
         metaTitle: body.metaTitle || "",
         metaDescription: body.metaDescription || "",
         focusKeyword: body.focusKeyword || "",
