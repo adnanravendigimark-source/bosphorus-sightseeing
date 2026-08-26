@@ -168,13 +168,12 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        {/* Google tag (gtag.js) — replace G-XXXXXXXXXX with this site's own
-            GA4 measurement ID before launch (Admin → Analytics, or a
-            property you create at analytics.google.com). Do not reuse
-            another site's ID — it will mix both sites' traffic together. */}
+        {/* Google tag (gtag.js) — GA4 measurement ID G-KJTD4JBDZP, this
+            site's own property (do not reuse this ID on another site — it
+            will mix both sites' traffic together). */}
         <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-KJTD4JBDZP"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -183,7 +182,7 @@ export default async function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-KJTD4JBDZP');
           `}
         </Script>
       </head>
