@@ -240,7 +240,6 @@ export interface HomepageContent {
   heroSubheading: string;
   heroImage: string;
   heroImageAlt: string;
-  heroGallery: GalleryImage[];
   heroCtaPrimaryText: string;
   heroCtaPrimaryHref: string;
   heroCtaSecondaryText: string;
@@ -346,29 +345,6 @@ export const DEFAULT_THEME: ThemeColors = {
   dark: "#082B4C",      // Bosphorus Navy
   accent: "#E5BA5A",    // Soft Gold
 };
-
-export const DEFAULT_GALLERY: GalleryImage[] = [
-  {
-    src: "/tour-short-circle.jpg",
-    alt: "Ortakoy Mosque and Bosphorus Bridge during daytime sightseeing cruise in Istanbul",
-    label: "Ortaköy & Bridge",
-  },
-  {
-    src: "/palace-dolmabahce.jpg",
-    alt: "Dolmabahce Palace waterfront facade and clock tower on the Bosphorus strait",
-    label: "Dolmabahçe Palace",
-  },
-  {
-    src: "/palace-maidens-tower.jpg",
-    alt: "Maiden's Tower in the Bosphorus with Istanbul historical skyline",
-    label: "Maiden's Tower",
-  },
-  {
-    src: "/palace-rumeli.jpg",
-    alt: "Rumeli Fortress along the Bosphorus shoreline in bright daylight",
-    label: "Rumeli Fortress",
-  },
-];
 
 export const DEFAULT_SECTIONS: HomepageSections = {
   tours: {
@@ -559,7 +535,6 @@ const DEFAULT_HOMEPAGE_CONTENT: HomepageContent = {
   heroImage:
     "https://images.unsplash.com/photo-1763965367191-6455ef032c79?q=80&w=2400&auto=format&fit=crop",
   heroImageAlt: "Sightseeing cruise boat on the Bosphorus strait in front of Ortakoy Mosque and bridge",
-  heroGallery: DEFAULT_GALLERY,
   heroCtaPrimaryText: "Day Cruise Tickets",
   heroCtaPrimaryHref: "#tours",
   heroCtaSecondaryText: "Afternoon Cruise Tickets",
@@ -629,10 +604,6 @@ function rowToHomepage(row: any): HomepageContent {
     heroSubheading: row.hero_subheading || "",
     heroImage: row.hero_image || "",
     heroImageAlt: row.hero_image_alt || "",
-    heroGallery: (() => {
-      const g = parseReasons(row.hero_gallery);
-      return g.length ? (g as unknown as GalleryImage[]) : DEFAULT_GALLERY;
-    })(),
     heroCtaPrimaryText: row.hero_cta_primary_text || DEFAULT_HOMEPAGE_CONTENT.heroCtaPrimaryText,
     heroCtaPrimaryHref: row.hero_cta_primary_href || DEFAULT_HOMEPAGE_CONTENT.heroCtaPrimaryHref,
     heroCtaSecondaryText: row.hero_cta_secondary_text || DEFAULT_HOMEPAGE_CONTENT.heroCtaSecondaryText,
@@ -713,7 +684,6 @@ export async function saveHomepageCopy(data: {
   heroSubheading: string;
   heroImage: string;
   heroImageAlt: string;
-  heroGallery: GalleryImage[];
   heroCtaPrimaryText: string;
   heroCtaPrimaryHref: string;
   heroCtaSecondaryText: string;
@@ -731,13 +701,13 @@ export async function saveHomepageCopy(data: {
   await sql`
     INSERT INTO homepage (
       id, hero_badge, hero_heading, hero_subheading, hero_image, hero_image_alt,
-      hero_gallery, hero_cta_primary_text, hero_cta_primary_href,
+      hero_cta_primary_text, hero_cta_primary_href,
       hero_cta_secondary_text, hero_cta_secondary_href,
       rating_value, rating_count, meta_title, meta_description, focus_keyword,
       canonical_url, og_title, og_description, og_image
     ) VALUES (
       1, ${data.heroBadge}, ${data.heroHeading}, ${data.heroSubheading}, ${data.heroImage},
-      ${data.heroImageAlt}, ${JSON.stringify(data.heroGallery || [])}::jsonb,
+      ${data.heroImageAlt},
       ${data.heroCtaPrimaryText || ""}, ${data.heroCtaPrimaryHref || ""},
       ${data.heroCtaSecondaryText || ""}, ${data.heroCtaSecondaryHref || ""},
       ${data.ratingValue}, ${data.ratingCount},
@@ -750,7 +720,6 @@ export async function saveHomepageCopy(data: {
       hero_subheading = EXCLUDED.hero_subheading,
       hero_image = EXCLUDED.hero_image,
       hero_image_alt = EXCLUDED.hero_image_alt,
-      hero_gallery = EXCLUDED.hero_gallery,
       hero_cta_primary_text = EXCLUDED.hero_cta_primary_text,
       hero_cta_primary_href = EXCLUDED.hero_cta_primary_href,
       hero_cta_secondary_text = EXCLUDED.hero_cta_secondary_text,

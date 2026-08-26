@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SafeImage from "./SafeImage";
 import { getHomepageContent } from "@/lib/homepage";
 
@@ -8,17 +7,20 @@ import { getHomepageContent } from "@/lib/homepage";
 // Dual tickets CTA buttons, Trustpilot review block, and water hotspot marker.
 export default async function Hero() {
   const content = await getHomepageContent();
-  const gallery = content.heroGallery;
 
   return (
     <section
       id="top"
       className="relative flex min-h-[calc(100dvh-5rem)] flex-col justify-center overflow-hidden bg-[#082B4C] text-white"
     >
-      {/* Full-bleed photo background with boat positioned on the right */}
+      {/* Full-bleed photo background with boat positioned on the right —
+          now wired to the admin's "Hero background photo" field (was
+          previously hardcoded to /hero-cruise.jpg regardless of what was
+          uploaded/saved in /admin/homepage). Falls back to the original
+          static file if the field is left blank. */}
       <div className="absolute inset-0 z-0">
         <SafeImage
-          src="/hero-cruise.jpg"
+          src={content.heroImage || "/hero-cruise.jpg"}
           alt={content.heroImageAlt || "Bosphorus sightseeing boat cruise in Istanbul"}
           fill
           priority
@@ -36,10 +38,13 @@ export default async function Hero() {
             {content.heroBadge || "BOSPHORUS SIGHTSEEING CRUISE TOUR"}
           </span>
 
-          {/* Main Heading */}
-          <h1 className="mt-3 font-display text-4xl sm:text-5xl lg:text-[4.2rem] font-bold leading-[1.08] tracking-tight text-white drop-shadow">
-            Bosphorus <br />
-            Sightseeing Cruise Tour
+          {/* Main Heading — now wired to the admin's "Hero headline (H1)"
+              field (was previously hardcoded plain text, so editing/saving
+              it in /admin/homepage had no visible effect). whitespace-pre-line
+              preserves manual line breaks typed into the textarea, matching
+              the old hardcoded two-line layout by default. */}
+          <h1 className="mt-3 font-display text-4xl sm:text-5xl lg:text-[4.2rem] font-bold leading-[1.08] tracking-tight text-white drop-shadow whitespace-pre-line">
+            {content.heroHeading || "Bosphorus\nSightseeing Cruise Tour"}
           </h1>
 
           {/* Cursive / Calligraphy Script Subtitle */}
@@ -72,33 +77,6 @@ export default async function Hero() {
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
-
-          {/* Hero photo strip — admin-editable from /admin/homepage
-              ("Hero photo strip" field), but this block was previously
-              missing entirely: the field saved to the DB correctly, it just
-              had nowhere on the page to render. */}
-          {gallery.length > 0 && (
-            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-              {gallery.map((img, i) => (
-                <div
-                  key={img.label + i}
-                  className="group relative h-24 overflow-hidden rounded-xl border border-[#D9A441]/30 shadow-xl shadow-black/20 sm:h-28 transition-transform duration-300 hover:scale-[1.03]"
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(min-width: 640px) 25vw, 50vw"
-                    className="object-cover transition duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <span className="absolute bottom-2 left-2.5 text-xs font-bold text-white drop-shadow">
-                    {img.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </section>

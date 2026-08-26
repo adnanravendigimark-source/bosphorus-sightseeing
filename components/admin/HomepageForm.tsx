@@ -1043,24 +1043,6 @@ export default function HomepageForm({ initial, tours }: { initial: HomepageCont
             </Field>
           </SectionCard>
 
-          <SectionCard title="Hero photo strip" description="The 4 small photos under the hero buttons.">
-            <RepeatableList<GalleryImage>
-              items={content.heroGallery}
-              onChange={(heroGallery) => update("heroGallery", heroGallery)}
-              newItem={() => ({ src: "", alt: "", label: "" })}
-              addLabel="+ Add photo"
-              renderItem={(img, upd) => (
-                <div className="space-y-2">
-                  <ImageUploadField label="Photo" value={img.src} onChange={(url) => upd({ ...img, src: url })} aspectRatio={1} />
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    <input value={img.label} onChange={(e) => upd({ ...img, label: e.target.value })} placeholder="Caption shown on the photo" className={inputClass} />
-                    <input value={img.alt} onChange={(e) => upd({ ...img, alt: e.target.value })} placeholder="Alt text" className={inputClass} />
-                  </div>
-                </div>
-              )}
-            />
-          </SectionCard>
-
           <SectionCard title="Waterfront Palaces & Mansions photos">
             <RepeatableList<GalleryImage>
               items={content.sections.tower.images}
