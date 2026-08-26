@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SafeImage from "./SafeImage";
 import { getHomepageContent } from "@/lib/homepage";
 
@@ -7,6 +8,7 @@ import { getHomepageContent } from "@/lib/homepage";
 // Dual tickets CTA buttons, Trustpilot review block, and water hotspot marker.
 export default async function Hero() {
   const content = await getHomepageContent();
+  const gallery = content.heroGallery;
 
   return (
     <section
@@ -70,6 +72,33 @@ export default async function Hero() {
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
+
+          {/* Hero photo strip — admin-editable from /admin/homepage
+              ("Hero photo strip" field), but this block was previously
+              missing entirely: the field saved to the DB correctly, it just
+              had nowhere on the page to render. */}
+          {gallery.length > 0 && (
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+              {gallery.map((img, i) => (
+                <div
+                  key={img.label + i}
+                  className="group relative h-24 overflow-hidden rounded-xl border border-[#D9A441]/30 shadow-xl shadow-black/20 sm:h-28 transition-transform duration-300 hover:scale-[1.03]"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 640px) 25vw, 50vw"
+                    className="object-cover transition duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <span className="absolute bottom-2 left-2.5 text-xs font-bold text-white drop-shadow">
+                    {img.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
