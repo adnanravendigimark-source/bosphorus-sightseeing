@@ -7,11 +7,20 @@ import { getBlogSeoSettings } from "@/lib/settings";
 import { getAboutPage } from "@/lib/about";
 import { getContactPage } from "@/lib/contact";
 
-export const dynamic = "force-dynamic";
+// Cached for an hour instead of force-dynamic. This route was doing 6
+// parallel live Neon queries on *every single request* with zero caching —
+// fine for a normal browser fetch, but Googlebot's sitemap fetcher is far
+// less patient than that, and a cold Vercel function + cold DB connection
+// occasionally pushed the response past its timeout. That's the most likely
+// cause of Search Console's "Sitemap could not be read" error even though
+// the file loads fine when checked by hand. Revalidating hourly means
+// almost every crawl gets served from cache in a few ms; a sitemap doesn't
+// need to be real-time fresh, and a new blog post shows up within the hour.
+export const revalidate = 3600;
 
-// Auto-generated at request time (this route is dynamic by nature — it
-// reads live blog posts from the database) and served at /sitemap.xml.
-// Submit that URL in Google Search Console once the site is live.
+// Auto-generated (revalidated hourly — see above) and served at
+// /sitemap.xml. Submit that URL in Google Search Console once the site is
+// live.
 //
 // A URL only belongs in the sitemap if it is indexable and do-follow (noIndex: false, noFollow: false).
 // Every page is index/follow by default; a page only drops out of the sitemap
