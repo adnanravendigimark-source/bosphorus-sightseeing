@@ -24,6 +24,7 @@ export default async function Hero() {
           alt={content.heroImageAlt || "Bosphorus sightseeing boat cruise in Istanbul"}
           fill
           priority
+          quality={70}
           sizes="100vw"
           className="object-cover object-[right_center] lg:object-center"
         />

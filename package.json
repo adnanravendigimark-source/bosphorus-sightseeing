@@ -9,10 +9,8 @@
     "lint": "next lint"
   },
   "browserslist": [
-    "> 0.3%",
-    "not dead",
-    "not op_mini all",
-    "not ie 11"
+    "defaults and fully supports es6-module",
+    "maintained node versions"
   ],
   "dependencies": {
     "@neondatabase/serverless": "^0.10.1",
