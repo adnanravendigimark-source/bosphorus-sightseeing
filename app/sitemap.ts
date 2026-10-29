@@ -16,7 +16,7 @@ import { getContactPage } from "@/lib/contact";
 // the file loads fine when checked by hand. Revalidating hourly means
 // almost every crawl gets served from cache in a few ms; a sitemap doesn't
 // need to be real-time fresh, and a new blog post shows up within the hour.
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 // Auto-generated (revalidated hourly — see above) and served at
 // /sitemap.xml. Submit that URL in Google Search Console once the site is

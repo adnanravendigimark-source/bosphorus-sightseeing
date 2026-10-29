@@ -8,7 +8,6 @@ import { hexToRgbTriplet } from "@/lib/color";
 import "./globals.css";
 
 // Forces every page in the app to render dynamically, root layout included
-export const dynamic = "force-dynamic";
 
 // Real display typeface, loaded once here and exposed as a CSS variable so
 // every font-display usage site-wide (headings, the logo wordmark) picks
